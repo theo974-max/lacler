@@ -57,27 +57,28 @@
 
   #intro {
     position: fixed; inset: 0; z-index: 10000;
-    background: #ffffff;
+    /* PAS de background — la vague SVG fournit le blanc et se déforme en montant */
     display: flex; align-items: center; justify-content: center;
     overflow: hidden;
-    animation: intro-rise 1.2s cubic-bezier(.76,0,.24,1) 2.4s forwards;
-    will-change: transform;
+    pointer-events: auto;
   }
-  /* "tongue" de liquide qui dépasse en bas → effet de vague qui monte */
-  #intro::after {
-    content: "";
-    position: absolute;
-    left: -5%; right: -5%;
-    top: 100%;
-    height: 11vw;
-    background: #ffffff;
-    border-radius: 0 0 50% 50% / 0 0 100% 100%;
+  /* la vague SVG occupe tout l'écran et s'anime via SMIL (attribut d) */
+  .intro-wave {
+    position: absolute; inset: 0;
+    width: 100%; height: 100%;
+    z-index: 0;
+    filter: drop-shadow(0 -2px 0 rgba(28,22,18,0.04));
   }
-  @keyframes intro-rise {
-    to { transform: translateY(-115%); }
+  /* fade-out du conteneur en toute fin pour que rien ne reste */
+  #intro {
+    animation: intro-fadeout 0.25s ease 3.65s forwards;
+  }
+  @keyframes intro-fadeout {
+    to { opacity: 0; visibility: hidden; }
   }
 
   .intro-logo {
+    position: relative; z-index: 1;
     display: flex; align-items: center;
     gap: 0.06em;
     font-family: 'Instrument Serif', Georgia, serif;
@@ -87,6 +88,11 @@
     font-size: clamp(72px, 13vw, 168px);
     letter-spacing: -0.015em;
     line-height: 1;
+    /* fade-out synchronisé avec le pic de la vague (50% de la morph = ~3.15s) */
+    animation: intro-logo-out 0.55s cubic-bezier(.55,0,.45,1) 2.65s forwards;
+  }
+  @keyframes intro-logo-out {
+    to { opacity: 0; transform: translateY(-22px); }
   }
   .il-text {
     opacity: 0;
@@ -642,6 +648,26 @@
 
 <!-- ============ INTRO — clé qui tombe + vague liquide ============ -->
 <div id="intro" aria-hidden="true">
+  <!-- la vague EST le fond blanc : un path SVG qui se déforme et remonte -->
+  <svg class="intro-wave" preserveAspectRatio="none" viewBox="0 0 100 100" aria-hidden="true">
+    <path fill="#ffffff" d="M0,0 H100 V100 H0 Z">
+      <animate
+        attributeName="d"
+        dur="1.5s"
+        begin="2.4s"
+        fill="freeze"
+        calcMode="spline"
+        keyTimes="0; 0.12; 0.42; 0.72; 1"
+        keySplines="0.45 0 0.4 1; 0.55 0 0.3 1; 0.5 0 0.3 1; 0.45 0 0.55 1"
+        values="
+          M0,0 H100 V100 H0 Z;
+          M0,0 H100 V94 Q50,114 0,94 Z;
+          M0,0 H100 V62 Q50,30 0,62 Z;
+          M0,0 H100 V18 Q50,-12 0,18 Z;
+          M0,0 H100 V-22 Q50,-54 0,-22 Z"
+      />
+    </path>
+  </svg>
   <div class="intro-logo">
     <span class="il-text il-la">La</span>
     <svg class="il-key" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
