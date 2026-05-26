@@ -1,10 +1,82 @@
 /* LA CLÉ — interactions partagées */
 (function () {
-  // navbar scrolled
+  // ============================================================
+  // THEME jour/nuit — auto (selon coucher du soleil) + toggle manuel
+  // ============================================================
+  // Heures approximées du lever / coucher du soleil en France métropolitaine
+  // (Nîmes / Paris ≈ latitude moyenne) — par mois, en heure locale.
+  var SUNRISE = [8, 7, 7, 7, 6, 6, 6, 7, 7, 8, 7, 8];   // jan...déc
+  var SUNSET  = [17, 18, 19, 20, 21, 21, 21, 21, 20, 19, 17, 17];
+
+  function autoTheme () {
+    var now = new Date();
+    var m = now.getMonth();
+    var h = now.getHours() + now.getMinutes() / 60;
+    return (h >= SUNRISE[m] && h < SUNSET[m]) ? 'day' : 'night';
+  }
+
+  function applyTheme (theme) {
+    var root = document.documentElement;
+    if (theme === 'night') root.classList.add('theme-night');
+    else root.classList.remove('theme-night');
+    // Met à jour la couleur de barre de statut mobile (theme-color)
+    var meta = document.querySelector('meta[name="theme-color"]');
+    if (meta) meta.setAttribute('content', theme === 'night' ? '#161210' : '#fbfaf7');
+  }
+
+  var stored = null;
+  try { stored = localStorage.getItem('lacle-theme'); } catch (e) {}
+  // stored = 'day' | 'night' | null (= auto)
+  var initial = stored || autoTheme();
+  applyTheme(initial);
+
+  // bouton toggle
+  var toggle = document.querySelector('.theme-toggle');
+  if (toggle) {
+    toggle.addEventListener('click', function () {
+      var current = document.documentElement.classList.contains('theme-night') ? 'night' : 'day';
+      var next = current === 'night' ? 'day' : 'night';
+      applyTheme(next);
+      try { localStorage.setItem('lacle-theme', next); } catch (e) {}
+    });
+  }
+
+  // Recheck l'heure toutes les 5 min — si l'utilisateur n'a PAS encore choisi,
+  // le site bascule tout seul au coucher / lever du soleil.
+  setInterval(function () {
+    var hasManual = false;
+    try { hasManual = !!localStorage.getItem('lacle-theme'); } catch (e) {}
+    if (!hasManual) applyTheme(autoTheme());
+  }, 5 * 60 * 1000);
+
+  // ============================================================
+  // Positionnement dynamique du bouton toggle (à droite de la pill nav)
+  // ============================================================
   var nav = document.querySelector('.nav');
+  function placeToggle () {
+    if (!toggle || !nav) return;
+    var r = nav.getBoundingClientRect();
+    // colle à droite de la pill, mais reste dans l'écran (clamp à 56 px du bord)
+    var maxLeft = window.innerWidth - 56;
+    var leftPos = Math.min(r.right + 10, maxLeft);
+    toggle.style.left = leftPos + 'px';
+    toggle.style.transform = 'none';
+  }
+  placeToggle();
+  window.addEventListener('resize', placeToggle);
+  window.addEventListener('load', placeToggle);
+  // re-positionne quand les fonts custom sont prêtes (la pill peut grandir un peu)
+  if (document.fonts && document.fonts.ready) {
+    document.fonts.ready.then(placeToggle);
+  }
+
+  // navbar scrolled
   if (nav) {
     var onScroll = function () {
-      nav.classList.toggle('scrolled', window.scrollY > 30);
+      var s = window.scrollY > 30;
+      nav.classList.toggle('scrolled', s);
+      if (toggle) toggle.classList.toggle('scrolled', s);
+      placeToggle();
     };
     onScroll();
     window.addEventListener('scroll', onScroll, { passive: true });

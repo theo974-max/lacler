@@ -3,23 +3,35 @@
    ============================================================ */
 
 :root {
-  /* Light theme — fond clair + accents dorés */
-  --ink:        #faf5ea;   /* fond principal (crème blanc cassé) */
-  --ink-soft:   #f1e7d2;   /* surface secondaire (crème un peu plus marqué) */
-  --ink-card:   #ffffff;   /* cards / surfaces blanches */
-  --cream:      #1c1612;   /* texte principal (sombre) */
-  --cream-soft: #4a3f33;   /* texte secondaire */
+  /* ===== Mode JOUR (par défaut) — blanc cassé épuré + doré ===== */
+  --ink:        #fbfaf7;   /* fond principal (off-white subtil) */
+  --ink-soft:   #f1efe8;   /* surface secondaire (sections divisées) */
+  --ink-card:   #ffffff;   /* cards blanches pures */
+  --cream:      #161210;   /* texte principal (quasi noir) */
+  --cream-soft: #4a4239;   /* texte secondaire */
   --gold:       #c9971f;
   --gold-lite:  #e3b95a;
   --gold-bright:#e8b53d;
-  --gold-deep:  #a17914;   /* doré plus foncé, contraste meilleur sur clair */
-  --line:       rgba(28,22,18,0.10);
-  --line-soft:  rgba(28,22,18,0.05);
-  --text-mute:  rgba(28,22,18,0.55);
+  --line:       rgba(22,18,16,0.09);
+  --line-soft:  rgba(22,18,16,0.04);
+  --text-mute:  rgba(22,18,16,0.55);
 
-  /* Couleurs fixes (ne basculent pas avec le thème) */
-  --on-gold:    #1c1612;   /* texte sur fond doré (toujours sombre) */
+  /* Couleurs fixes (indépendantes du thème) */
+  --on-gold:    #161210;   /* texte sur fond doré (toujours sombre) */
   --on-dark:    #f5ede0;   /* texte sur sections sombres (hero / overlays) */
+
+  /* Ombres adaptatives */
+  --shadow-card: 0 18px 40px rgba(22,18,16,0.08), 0 2px 8px rgba(22,18,16,0.04);
+  --shadow-card-hover: 0 26px 56px rgba(22,18,16,0.14), 0 3px 10px rgba(22,18,16,0.06);
+
+  /* Inputs (form) */
+  --input-bg: rgba(22,18,16,0.03);
+  --input-bg-focus: rgba(255,255,255,0.7);
+  --input-placeholder: rgba(22,18,16,0.35);
+
+  /* Grain */
+  --grain-blend: multiply;
+  --grain-opacity: 0.025;
 
   --display: 'Anton', 'Impact', sans-serif;
   --serif:   'Instrument Serif', Georgia, serif;
@@ -30,7 +42,29 @@
   --ease: cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-/* Îlot sombre — rebascule les variables sur le thème sombre original */
+/* ===== Mode NUIT — palette sombre dorée d'origine ===== */
+html.theme-night {
+  --ink:        #161210;
+  --ink-soft:   #1f1812;
+  --ink-card:   #211a14;
+  --cream:      #f5ede0;
+  --cream-soft: #d9cdb8;
+  --line:       rgba(201,151,31,0.22);
+  --line-soft:  rgba(245,237,224,0.10);
+  --text-mute:  rgba(245,237,224,0.58);
+
+  --shadow-card: 0 22px 44px rgba(0,0,0,0.40), 0 2px 8px rgba(0,0,0,0.20);
+  --shadow-card-hover: 0 30px 60px rgba(0,0,0,0.55), 0 4px 12px rgba(0,0,0,0.30);
+
+  --input-bg: rgba(255,255,255,0.05);
+  --input-bg-focus: rgba(255,255,255,0.08);
+  --input-placeholder: rgba(245,237,224,0.35);
+
+  --grain-blend: screen;
+  --grain-opacity: 0.045;
+}
+
+/* Îlot sombre local — pour le hero et overlays qui restent sombres en mode jour */
 .theme-dark {
   --ink:        #161210;
   --ink-soft:   #1f1812;
@@ -42,6 +76,14 @@
   --text-mute:  rgba(245,237,224,0.58);
   background: var(--ink);
   color: var(--cream);
+}
+
+/* Transition douce lors du basculement de thème */
+html, body, .nav, .footer, .strip, .feature, .cta-banner,
+.svc-card, .work-card, .proj, .devis-mock, .contact-form-card,
+.faq-q, .faq-a p, .filter-btn {
+  transition: background-color .5s var(--ease), color .5s var(--ease),
+              border-color .5s var(--ease), box-shadow .5s var(--ease);
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -61,13 +103,13 @@ a { color: inherit; text-decoration: none; }
 
 ::selection { background: var(--gold); color: var(--ink); }
 
-/* grain overlay — plus subtil sur fond clair */
+/* grain overlay — adaptatif au thème */
 body::before {
   content: "";
   position: fixed; inset: 0;
   pointer-events: none; z-index: 9999;
-  opacity: 0.025;
-  mix-blend-mode: multiply;
+  opacity: var(--grain-opacity);
+  mix-blend-mode: var(--grain-blend);
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 }
 
@@ -114,23 +156,35 @@ section { position: relative; }
   display: flex; align-items: center;
   gap: 32px;
   padding: 8px 8px 8px 22px;
-  background: rgba(255,255,255,0.72);
+  background: var(--nav-bg, rgba(255,255,255,0.72));
   backdrop-filter: blur(18px) saturate(1.4);
   -webkit-backdrop-filter: blur(18px) saturate(1.4);
-  border: 1px solid rgba(28,22,18,0.08);
+  border: 1px solid var(--nav-border, rgba(28,22,18,0.08));
   border-radius: 999px;
-  box-shadow: 0 8px 32px rgba(28,22,18,0.08), 0 2px 8px rgba(28,22,18,0.04);
+  box-shadow: var(--nav-shadow, 0 8px 32px rgba(28,22,18,0.08), 0 2px 8px rgba(28,22,18,0.04));
   width: max-content;
   max-width: calc(100% - 36px);
   transition: top .35s var(--ease), padding .35s var(--ease),
-              background .35s var(--ease), border-color .35s var(--ease),
-              box-shadow .35s var(--ease);
+              background .5s var(--ease), border-color .5s var(--ease),
+              box-shadow .5s var(--ease);
 }
 .nav.scrolled {
   top: 12px;
-  background: rgba(255,255,255,0.94);
-  border-color: rgba(28,22,18,0.12);
-  box-shadow: 0 12px 38px rgba(28,22,18,0.12), 0 2px 8px rgba(28,22,18,0.05);
+  background: var(--nav-bg-scrolled, rgba(255,255,255,0.94));
+  border-color: var(--nav-border-scrolled, rgba(28,22,18,0.12));
+  box-shadow: var(--nav-shadow-scrolled, 0 12px 38px rgba(28,22,18,0.12), 0 2px 8px rgba(28,22,18,0.05));
+}
+
+/* Nav pill — mode nuit */
+html.theme-night .nav {
+  background: rgba(22,18,16,0.72);
+  border-color: rgba(201,151,31,0.22);
+  box-shadow: 0 10px 36px rgba(0,0,0,0.45), 0 2px 8px rgba(0,0,0,0.25);
+}
+html.theme-night .nav.scrolled {
+  background: rgba(22,18,16,0.94);
+  border-color: rgba(201,151,31,0.36);
+  box-shadow: 0 14px 42px rgba(0,0,0,0.55), 0 3px 10px rgba(0,0,0,0.30);
 }
 .nav-logo {
   display: flex; align-items: baseline; gap: 7px;
@@ -179,6 +233,49 @@ section { position: relative; }
   width: 24px; height: 2px; background: var(--cream);
   display: block; transition: .3s;
 }
+
+/* ============================================================
+   THEME TOGGLE — bouton rond flottant à droite de la pill nav
+   ============================================================ */
+.theme-toggle {
+  position: fixed; top: 18px;
+  left: calc(50% + 1px); /* sera décalé par JS si la pill est large */
+  z-index: 1000;
+  width: 44px; height: 44px;
+  border-radius: 50%;
+  background: var(--nav-bg, rgba(255,255,255,0.72));
+  backdrop-filter: blur(18px) saturate(1.4);
+  -webkit-backdrop-filter: blur(18px) saturate(1.4);
+  border: 1px solid var(--nav-border, rgba(28,22,18,0.08));
+  box-shadow: var(--nav-shadow, 0 8px 32px rgba(28,22,18,0.08), 0 2px 8px rgba(28,22,18,0.04));
+  cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  color: var(--cream);
+  transition: top .35s var(--ease), background .5s var(--ease),
+              border-color .5s var(--ease), box-shadow .5s var(--ease),
+              transform .25s var(--ease), color .5s var(--ease);
+  /* positionnement réel calculé par JS — ce style est un fallback */
+}
+.theme-toggle:hover {
+  transform: scale(1.08);
+  color: var(--gold);
+}
+.theme-toggle:active { transform: scale(.95); }
+.theme-toggle svg {
+  width: 20px; height: 20px;
+  transition: transform .4s var(--ease), opacity .3s;
+}
+.theme-toggle .icon-sun { display: none; }
+.theme-toggle .icon-moon { display: block; }
+html.theme-night .theme-toggle {
+  background: rgba(22,18,16,0.72);
+  border-color: rgba(201,151,31,0.22);
+  box-shadow: 0 10px 36px rgba(0,0,0,0.45);
+}
+html.theme-night .theme-toggle.scrolled,
+.theme-toggle.scrolled { top: 12px; }
+html.theme-night .theme-toggle .icon-sun { display: block; }
+html.theme-night .theme-toggle .icon-moon { display: none; }
 
 /* ============================================================
    BUTTONS

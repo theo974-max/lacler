@@ -22,6 +22,9 @@
 <meta name="twitter:title" content="Défis sport — Chaque clé, une porte | La Clé" />
 <meta name="twitter:description" content="Pousser le sport pour pousser les rencontres." />
 <meta name="twitter:image" content="https://lacle.fr/assets/og-image.jpg" />
+<script>
+(function(){var t;try{t=localStorage.getItem('lacle-theme');}catch(e){}if(!t){var d=new Date(),h=d.getHours()+d.getMinutes()/60,m=d.getMonth();var r=[8,7,7,7,6,6,6,7,7,8,7,8][m],s=[17,18,19,20,21,21,21,21,20,19,17,17][m];t=(h>=r&&h<s)?'day':'night';}if(t==='night')document.documentElement.classList.add('theme-night');})();
+</script>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Anton&family=Caveat:wght@500;600;700&family=Inter:wght@300;400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet" />
@@ -123,7 +126,7 @@
     color: var(--gold);
   }
   .field input, .field textarea {
-    background: rgba(28,22,18,0.03);
+    background: var(--input-bg);
     border: 1.5px solid var(--line);
     color: var(--cream);
     padding: 13px 15px; border-radius: 8px;
@@ -133,9 +136,9 @@
   .field textarea { resize: vertical; }
   .field input:focus, .field textarea:focus {
     border-color: var(--gold);
-    background: rgba(255,255,255,0.7);
+    background: var(--input-bg-focus);
   }
-  .field input::placeholder, .field textarea::placeholder { color: rgba(245,237,224,0.35); }
+  .field input::placeholder, .field textarea::placeholder { color: var(--input-placeholder); }
   .hp { position: absolute; left: -9999px; }
 
   @media (max-width: 760px) {
@@ -169,6 +172,15 @@
   </ul>
   <button class="nav-burger" aria-label="Menu"><span></span><span></span><span></span></button>
 </nav>
+<button class="theme-toggle" type="button" aria-label="Basculer mode jour / nuit">
+  <svg class="icon-moon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+    <path d="M21 12.79A9 9 0 1111.21 3a7 7 0 009.79 9.79z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+  </svg>
+  <svg class="icon-sun" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+    <circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="1.8"/>
+    <path d="M12 3v2M12 19v2M3 12h2M19 12h2M5.6 5.6l1.4 1.4M17 17l1.4 1.4M5.6 18.4L7 17M17 7l1.4-1.4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+  </svg>
+</button>
 
 <section class="page-hero">
   <div class="wrap">
