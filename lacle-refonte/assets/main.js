@@ -263,4 +263,17 @@
   // filet de sécurité : si du contenu reste masqué (JS lent, scroll
   // instantané, capture), on force l'affichage après 2,5 s
   setTimeout(showAll, 2500);
+
+  // ============================================================
+  // TESTIMONIALS — duplique les cards pour un défilement sans coupure
+  // (le keyframe va jusqu'à -50%, donc il faut bien 2× le contenu)
+  // ============================================================
+  document.querySelectorAll('.testi-track').forEach(function (track) {
+    var originals = Array.from(track.children);
+    originals.forEach(function (card) {
+      var clone = card.cloneNode(true);
+      clone.setAttribute('aria-hidden', 'true');
+      track.appendChild(clone);
+    });
+  });
 })();
