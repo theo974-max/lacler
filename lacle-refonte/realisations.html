@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Réalisations — Nos projets | La Clé</title>
+<meta name="description" content="Découvrez les projets réalisés par La Clé : le devis vivant, une plateforme automobile, le portfolio MEDKEY et la chaîne de défis The K." />
+<meta name="author" content="La Clé" />
+<meta name="theme-color" content="#161210" />
+<link rel="canonical" href="https://lacle.fr/realisations.html" />
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="La Clé" />
+<meta property="og:locale" content="fr_FR" />
+<meta property="og:title" content="Réalisations — Nos projets | La Clé" />
+<meta property="og:description" content="Les projets réalisés par le studio La Clé." />
+<meta property="og:url" content="https://lacle.fr/realisations.html" />
+<meta property="og:image" content="https://lacle.fr/assets/og-image.jpg" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Réalisations — Nos projets | La Clé" />
+<meta name="twitter:description" content="Les projets réalisés par le studio La Clé." />
+<meta name="twitter:image" content="https://lacle.fr/assets/og-image.jpg" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Caveat:wght@500;600;700&family=Inter:wght@300;400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="assets/style.css" />
+<style>
+  .sec { padding: 70px 0 110px; }
+
+  /* filtres */
+  .filters {
+    display: flex; justify-content: center; gap: 10px;
+    flex-wrap: wrap; margin-bottom: 50px;
+  }
+  .filter-btn {
+    font-family: var(--sans);
+    font-size: 12px; font-weight: 700;
+    text-transform: uppercase; letter-spacing: 0.1em;
+    color: var(--cream-soft);
+    background: transparent;
+    border: 1.5px solid var(--line);
+    border-radius: 999px;
+    padding: 10px 22px; cursor: pointer;
+    transition: all .22s var(--ease);
+  }
+  .filter-btn:hover { border-color: var(--gold); color: var(--gold); }
+  .filter-btn.active {
+    background: var(--gold); color: var(--on-gold);
+    border-color: var(--gold);
+  }
+
+  /* grille projets */
+  .proj-grid {
+    display: grid; grid-template-columns: repeat(2, 1fr);
+    gap: 26px;
+  }
+  .proj {
+    background: var(--ink-card);
+    border: 1px solid var(--line);
+    border-radius: 5px; overflow: hidden;
+    transition: transform .35s var(--ease), box-shadow .35s, opacity .3s;
+    display: flex; flex-direction: column;
+  }
+  .proj:hover {
+    transform: translateY(-7px);
+    box-shadow: 0 24px 50px rgba(28,22,18,0.12), 0 2px 8px rgba(28,22,18,0.05);
+  }
+  .proj.hide { display: none; }
+  .proj-img {
+    position: relative; aspect-ratio: 16/10; overflow: hidden;
+  }
+  .proj-img img {
+    width: 100%; height: 100%; object-fit: cover;
+    transition: transform .6s var(--ease);
+    filter: brightness(.82);
+  }
+  .proj:hover .proj-img img { transform: scale(1.07); }
+  .proj-status {
+    position: absolute; top: 14px; right: 14px;
+    font-size: 10px; font-weight: 700;
+    text-transform: uppercase; letter-spacing: 0.1em;
+    padding: 6px 11px; border-radius: 2px;
+    background: rgba(22,18,16,0.9);
+    border: 1px solid var(--line);
+    color: var(--gold);
+  }
+  .proj-status.live { color: #6fcf86; border-color: rgba(111,207,134,0.4); }
+  .proj-body { padding: 28px 26px 30px; flex: 1; display: flex; flex-direction: column; }
+  .proj-cat {
+    font-size: 11px; text-transform: uppercase;
+    letter-spacing: 0.13em; color: var(--gold);
+    margin-bottom: 9px;
+  }
+  .proj-body h3 {
+    font-family: var(--display);
+    font-size: 26px; text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+  .proj-body p {
+    font-size: 14px; color: var(--text-mute);
+    line-height: 1.65; flex: 1;
+  }
+  .proj-link {
+    display: inline-flex; align-items: center; gap: 8px;
+    margin-top: 18px;
+    font-size: 12px; font-weight: 700;
+    text-transform: uppercase; letter-spacing: 0.08em;
+    color: var(--gold);
+    transition: gap .2s var(--ease);
+  }
+  .proj-link:hover { gap: 14px; }
+  .proj-link.disabled { color: var(--text-mute); pointer-events: none; }
+
+  @media (max-width: 760px) {
+    .proj-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <a href="index.html" class="nav-logo">
+    La
+    <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <g fill="none" stroke="#c9971f" stroke-width="5" stroke-linecap="round">
+        <circle cx="24" cy="24" r="11"/><path d="M31 31 L48 48"/>
+        <path d="M41 41 L48 34 M45 45 L52 38"/>
+      </g>
+    </svg>
+    Clé
+  </a>
+  <ul class="nav-links">
+    <li><a href="index.html">Accueil</a></li>
+    <li><a href="services.html">Services</a></li>
+    <li><a href="realisations.html" class="active">Réalisations</a></li>
+    <li><a href="defis.html">Défis</a></li>
+    <li><a href="equipe.html">Équipe</a></li>
+    <li><a href="faq.html">FAQ</a></li>
+    <li><a href="index.html#contact" class="nav-cta">Demander un devis</a></li>
+  </ul>
+  <button class="nav-burger" aria-label="Menu"><span></span><span></span><span></span></button>
+</nav>
+
+<section class="page-hero">
+  <div class="wrap">
+    <span class="eyebrow">Réalisations</span>
+    <h1 class="h-display">Ce qu'on a déjà <span class="serif-accent">déverrouillé.</span></h1>
+    <p>Des univers différents, une même rigueur d'exécution.</p>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="wrap">
+
+    <div class="filters reveal">
+      <button class="filter-btn active" data-f="all">Tout</button>
+      <button class="filter-btn" data-f="web">Sites web</button>
+      <button class="filter-btn" data-f="outil">Outils</button>
+      <button class="filter-btn" data-f="video">Vidéo</button>
+    </div>
+
+    <div class="proj-grid">
+
+      <article class="proj reveal" data-cat="outil" data-d="1">
+        <div class="proj-img">
+          <img src="assets/realisations-00-new.jpg" alt="Le devis vivant" />
+          <span class="proj-status live">En ligne</span>
+        </div>
+        <div class="proj-body">
+          <div class="proj-cat">Web app · Outil propriétaire</div>
+          <h3>Le devis vivant</h3>
+          <p>Notre plateforme propriétaire pour générer des devis interactifs
+             et faire de la transparence un argument commercial fort.</p>
+          <a href="https://devis-client.vercel.app" target="_blank" rel="noopener" class="proj-link">
+            Voir le projet
+            <svg viewBox="0 0 24 24" width="13" height="13" fill="none"><path d="M7 17L17 7M17 7H8M17 7v9" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+        </div>
+      </article>
+
+      <article class="proj reveal" data-cat="web" data-d="2">
+        <div class="proj-img">
+          <img src="assets/realisations-01-111749c289.jpg" alt="Plateforme automobile" />
+          <span class="proj-status live">En ligne</span>
+        </div>
+        <div class="proj-body">
+          <div class="proj-cat">Vitrine · Site web</div>
+          <h3>Plateforme auto</h3>
+          <p>Site complet pour un garage : présentation du parc, demandes de
+             reprise, prise de rendez-vous pour le lavage. Une vitrine qui travaille.</p>
+          <a href="https://cleanned.fr" target="_blank" rel="noopener" class="proj-link">
+            Voir le projet
+            <svg viewBox="0 0 24 24" width="13" height="13" fill="none"><path d="M7 17L17 7M17 7H8M17 7v9" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+        </div>
+      </article>
+
+      <article class="proj reveal" data-cat="web" data-d="3">
+        <div class="proj-img">
+          <img src="assets/realisations-02-c8d3119f17.jpg" alt="MEDKEY — portfolio Aymen Cherfi" />
+          <span class="proj-status live">En ligne</span>
+        </div>
+        <div class="proj-body">
+          <div class="proj-cat">Portfolio · Site web</div>
+          <h3>MEDKEY</h3>
+          <p>Portfolio personnel d'Aymen : direction artistique, image, mouvement.
+             Une vitrine soignée pour les projets vidéo et créatifs.</p>
+          <a href="https://aymen-cherfi-portfolio.vercel.app" target="_blank" rel="noopener" class="proj-link">
+            Voir le projet
+            <svg viewBox="0 0 24 24" width="13" height="13" fill="none"><path d="M7 17L17 7M17 7H8M17 7v9" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+        </div>
+      </article>
+
+      <article class="proj reveal" data-cat="video" data-d="4">
+        <div class="proj-img">
+          <img src="assets/realisations-03-5e6bb2be92.jpg" alt="The K — chaîne YouTube de défis" />
+          <span class="proj-status">En cours</span>
+        </div>
+        <div class="proj-body">
+          <div class="proj-cat">YouTube · Vidéo</div>
+          <h3>The K — l'aventure</h3>
+          <p>Chaîne YouTube de défis sportifs et de rencontres. Chaque clé ouvre
+             une nouvelle porte, chaque porte une nouvelle aventure.</p>
+          <a href="https://www.youtube.com/channel/UCWs4CnHRr5wrAAxjyaevR0Q" target="_blank" rel="noopener" class="proj-link">
+            Voir la chaîne
+            <svg viewBox="0 0 24 24" width="13" height="13" fill="none"><path d="M7 17L17 7M17 7H8M17 7v9" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<section class="cta-banner">
+  <div class="inner wrap">
+    <span class="eyebrow reveal" style="margin-bottom:18px;">À vous de jouer</span>
+    <h2 class="h-display reveal" data-d="1">Le prochain projet, <span class="serif-accent">c'est le vôtre.</span></h2>
+    <p class="reveal" data-d="2">Réservez un appel — on chiffre clair, sans engagement.</p>
+    <div class="reveal" data-d="3" style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap;">
+      <a href="https://calendly.com/" target="_blank" rel="noopener" class="btn btn-primary">
+        Réserver un appel gratuit
+        <svg viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+      <a href="mailto:contact@lacle.fr" class="btn btn-ghost">contact@lacle.fr</a>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-logo">
+          La
+          <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <g fill="none" stroke="#c9971f" stroke-width="5" stroke-linecap="round">
+              <circle cx="24" cy="24" r="11"/><path d="M31 31 L48 48"/>
+              <path d="M41 41 L48 34 M45 45 L52 38"/>
+            </g>
+          </svg>
+          Clé
+        </div>
+        <p class="footer-tag">une aventure à la fois</p>
+      </div>
+      <div class="footer-col">
+        <h4>Le studio</h4>
+        <a href="services.html">Services</a>
+        <a href="realisations.html">Réalisations</a>
+        <a href="defis.html">Défis sport</a>
+        <a href="equipe.html">L'équipe</a>
+        <a href="faq.html">FAQ</a>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <a href="mailto:contact@lacle.fr">contact@lacle.fr</a>
+        <p>Nîmes — France</p>
+        <p>Réponse sous 24h</p>
+        <a href="index.html#contact">Demander un devis</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 La Clé — Studio de commerce digital</span>
+      <span>Nîmes, France</span>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/main.js"></script>
+<script>
+  // filtres réalisations
+  var btns = document.querySelectorAll('.filter-btn');
+  var projs = document.querySelectorAll('.proj');
+  btns.forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      btns.forEach(function (b) { b.classList.remove('active'); });
+      btn.classList.add('active');
+      var f = btn.dataset.f;
+      projs.forEach(function (p) {
+        var show = (f === 'all' || p.dataset.cat === f);
+        p.classList.toggle('hide', !show);
+      });
+    });
+  });
+</script>
+</body>
+</html>

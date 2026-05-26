@@ -1,0 +1,901 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>La Clé — Studio de commerce digital à Nîmes</title>
+<meta name="description" content="Studio de commerce digital à Nîmes : sites web sur-mesure, vidéos publicitaires et devis interactifs. Un brief, un chiffrage clair, une livraison rapide." />
+<meta name="author" content="La Clé" />
+<meta name="theme-color" content="#161210" />
+<link rel="canonical" href="https://lacle.fr/" />
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="La Clé" />
+<meta property="og:locale" content="fr_FR" />
+<meta property="og:title" content="La Clé — Studio de commerce digital à Nîmes" />
+<meta property="og:description" content="Sites web, vidéos publicitaires et devis interactifs. On chiffre clair, on livre vite." />
+<meta property="og:url" content="https://lacle.fr/" />
+<meta property="og:image" content="https://lacle.fr/assets/og-image.jpg" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="La Clé — Studio de commerce digital à Nîmes" />
+<meta name="twitter:description" content="Sites web, vidéos publicitaires et devis interactifs. On chiffre clair, on livre vite." />
+<meta name="twitter:image" content="https://lacle.fr/assets/og-image.jpg" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Caveat:wght@500;600;700&family=Inter:wght@300;400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="assets/style.css" />
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ProfessionalService",
+  "name": "La Clé",
+  "description": "Studio de commerce digital : sites web sur-mesure, vidéos publicitaires et devis interactifs.",
+  "url": "https://lacle.fr",
+  "email": "contact@lacle.fr",
+  "image": "https://lacle.fr/assets/og-image.jpg",
+  "areaServed": "France",
+  "address": { "@type": "PostalAddress", "addressLocality": "Nîmes", "addressRegion": "Gard", "addressCountry": "FR" },
+  "founder": [
+    { "@type": "Person", "name": "Aymen Cherfi" },
+    { "@type": "Person", "name": "Théo Clapet" }
+  ]
+}
+</script>
+<style>
+  /* ===== HERO ===== */
+  .hero {
+    position: relative; min-height: 100svh;
+    display: flex; align-items: center;
+    overflow: hidden;
+  }
+  .hero-video {
+    position: absolute; inset: 0;
+    width: 100%; height: 100%; object-fit: cover;
+    z-index: 0;
+  }
+  .hero-veil {
+    position: absolute; inset: 0; z-index: 1;
+    background:
+      linear-gradient(180deg, rgba(22,18,16,0.78) 0%, rgba(22,18,16,0.55) 40%, rgba(22,18,16,0.96) 100%),
+      radial-gradient(ellipse 70% 60% at 25% 50%, rgba(22,18,16,0.4), transparent);
+  }
+  .hero-inner { position: relative; z-index: 2; width: 100%; }
+  .hero-eyebrow { margin-bottom: 26px; }
+  .hero h1 {
+    font-size: clamp(54px, 10.5vw, 138px);
+    max-width: 14ch;
+    margin-bottom: 28px;
+  }
+  .hero h1 .ln { display: block; }
+  .hero-sub {
+    font-family: var(--serif);
+    font-size: clamp(18px, 2.5vw, 26px);
+    color: var(--cream-soft);
+    max-width: 540px; margin-bottom: 40px;
+  }
+  .hero-actions { display: flex; gap: 16px; flex-wrap: wrap; }
+  .hero-scroll {
+    position: absolute; bottom: 30px; left: 50%;
+    transform: translateX(-50%); z-index: 2;
+    display: flex; flex-direction: column; align-items: center; gap: 8px;
+    font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--text-mute);
+  }
+  .hero-scroll .bar {
+    width: 1px; height: 38px;
+    background: linear-gradient(var(--gold), transparent);
+    animation: scrollpulse 2s var(--ease) infinite;
+  }
+  @keyframes scrollpulse {
+    0%,100% { opacity: .3; transform: scaleY(.6); transform-origin: top; }
+    50% { opacity: 1; transform: scaleY(1); }
+  }
+
+  /* ===== STRIP atouts ===== */
+  .strip {
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+    background: var(--ink-soft);
+  }
+  .strip-grid {
+    display: grid; grid-template-columns: repeat(4, 1fr);
+  }
+  .strip-item {
+    padding: 38px 26px; text-align: center;
+    border-right: 1px solid var(--line-soft);
+  }
+  .strip-item:last-child { border-right: none; }
+  .strip-item .k {
+    font-family: var(--display);
+    font-size: 40px; color: var(--gold);
+    line-height: 1; margin-bottom: 8px;
+  }
+  .strip-item .v {
+    font-size: 13px; color: var(--cream-soft);
+    letter-spacing: 0.02em;
+  }
+
+  /* ===== SECTION générique ===== */
+  .sec { padding: 110px 0; }
+  .sec-head { max-width: 680px; margin-bottom: 56px; }
+  .sec-head.center { margin-left: auto; margin-right: auto; text-align: center; }
+  .sec-head h2 {
+    font-size: clamp(38px, 6vw, 72px);
+    margin: 18px 0 18px;
+  }
+  .sec-head p {
+    font-family: var(--serif);
+    font-size: clamp(17px, 2.1vw, 21px);
+    color: var(--cream-soft);
+  }
+
+  /* ===== SERVICES ===== */
+  .svc-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 22px;
+  }
+  .svc-card {
+    background: var(--ink-card);
+    border: 1px solid var(--line);
+    border-radius: 4px;
+    padding: 38px 32px;
+    transition: transform .3s var(--ease), border-color .3s, box-shadow .3s;
+    position: relative; overflow: hidden;
+  }
+  .svc-card::before {
+    content: ""; position: absolute; top: 0; left: 0;
+    width: 100%; height: 3px;
+    background: var(--gold);
+    transform: scaleX(0); transform-origin: left;
+    transition: transform .35s var(--ease);
+  }
+  .svc-card:hover {
+    transform: translateY(-6px);
+    border-color: var(--line);
+    box-shadow: 0 20px 44px rgba(28,22,18,0.10), 0 2px 8px rgba(28,22,18,0.04);
+  }
+  .svc-card:hover::before { transform: scaleX(1); }
+  .svc-num {
+    font-family: var(--display);
+    font-size: 14px; color: var(--gold);
+    letter-spacing: 0.1em; margin-bottom: 20px;
+  }
+  .svc-icon {
+    width: 46px; height: 46px; margin-bottom: 20px;
+    color: var(--gold);
+  }
+  .svc-card h3 {
+    font-family: var(--display);
+    font-size: 25px; text-transform: uppercase;
+    letter-spacing: 0.02em; margin-bottom: 6px;
+  }
+  .svc-card .tagline {
+    font-size: 12px; text-transform: uppercase;
+    letter-spacing: 0.12em; color: var(--gold);
+    margin-bottom: 16px;
+  }
+  .svc-card p {
+    font-size: 14.5px; color: var(--text-mute);
+    line-height: 1.65;
+  }
+
+  /* ===== POUR QUI ===== */
+  .audience {
+    background: var(--ink-soft);
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+  }
+  .aud-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 0;
+  }
+  .aud-item {
+    padding: 44px 32px;
+    border-right: 1px solid var(--line-soft);
+  }
+  .aud-item:last-child { border-right: none; }
+  .aud-item .big {
+    font-family: var(--serif); font-style: italic;
+    font-size: 30px; color: var(--gold);
+    margin-bottom: 12px;
+  }
+  .aud-item p { font-size: 14.5px; color: var(--text-mute); }
+
+  /* ===== RÉALISATIONS aperçu ===== */
+  .work-grid {
+    display: grid; grid-template-columns: repeat(2, 1fr);
+    gap: 22px;
+  }
+  .work-card {
+    position: relative; border-radius: 4px; overflow: hidden;
+    border: 1px solid var(--line);
+    aspect-ratio: 16/11;
+    display: flex; align-items: flex-end;
+  }
+  .work-card img {
+    position: absolute; inset: 0;
+    width: 100%; height: 100%; object-fit: cover;
+    transition: transform .6s var(--ease);
+    filter: brightness(.62) saturate(1.05);
+  }
+  .work-card:hover img { transform: scale(1.06); }
+  .work-info {
+    position: relative; z-index: 2;
+    padding: 30px;
+    background: linear-gradient(transparent, rgba(22,18,16,0.94));
+    width: 100%;
+    color: var(--on-dark);
+  }
+  .work-info .tag {
+    font-size: 11px; text-transform: uppercase;
+    letter-spacing: 0.14em; color: var(--gold);
+    margin-bottom: 8px;
+  }
+  .work-info h3 {
+    font-family: var(--display);
+    font-size: 27px; text-transform: uppercase;
+    color: var(--on-dark);
+  }
+  .work-info .desc {
+    font-size: 13.5px; color: rgba(245,237,224,0.75);
+    margin-top: 6px;
+  }
+
+  /* ===== PROCESS ===== */
+  .proc-grid {
+    display: grid; grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+  }
+  .proc-step {
+    border-top: 2px solid var(--line);
+    padding-top: 24px;
+  }
+  .proc-step .n {
+    font-family: var(--display);
+    font-size: 52px; color: var(--gold);
+    line-height: 0.9; margin-bottom: 14px;
+  }
+  .proc-step h4 {
+    font-family: var(--display);
+    font-size: 19px; text-transform: uppercase;
+    letter-spacing: 0.02em; margin-bottom: 8px;
+  }
+  .proc-step p { font-size: 13.5px; color: var(--text-mute); }
+
+  /* ===== DEVIS VIVANT feature ===== */
+  .feature {
+    background: var(--ink-soft);
+    border-top: 1px solid var(--line);
+  }
+  .feature-grid {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 56px; align-items: center;
+  }
+  .feature-text h2 {
+    font-size: clamp(36px, 5.2vw, 62px);
+    margin: 16px 0 18px;
+  }
+  .feature-text > p {
+    font-family: var(--serif);
+    font-size: 19px; color: var(--cream-soft);
+    margin-bottom: 26px;
+  }
+  .feature-list { list-style: none; }
+  .feature-list li {
+    display: flex; gap: 14px;
+    padding: 16px 0;
+    border-bottom: 1px solid var(--line-soft);
+  }
+  .feature-list li:last-child { border-bottom: none; }
+  .feature-list .fi-n {
+    font-family: var(--display);
+    font-size: 15px; color: var(--gold);
+    flex-shrink: 0; padding-top: 2px;
+  }
+  .feature-list .fi-t strong {
+    display: block; font-size: 15px;
+    color: var(--cream); margin-bottom: 2px;
+  }
+  .feature-list .fi-t span {
+    font-size: 13.5px; color: var(--text-mute);
+  }
+  /* mini devis mockup */
+  .devis-mock {
+    background: var(--ink-card); border: 1px solid var(--line);
+    border-radius: 12px; padding: 26px;
+    box-shadow: 0 24px 50px rgba(28,22,18,0.10), 0 2px 8px rgba(28,22,18,0.04);
+  }
+  .dm-head {
+    display: flex; justify-content: space-between;
+    align-items: baseline;
+    padding-bottom: 14px; margin-bottom: 6px;
+    border-bottom: 1px solid var(--line);
+  }
+  .dm-head .lbl {
+    font-size: 10px; letter-spacing: 0.14em;
+    text-transform: uppercase; color: var(--gold);
+  }
+  .dm-head .ref { font-size: 11px; color: var(--text-mute); }
+  .dm-row {
+    display: flex; justify-content: space-between;
+    align-items: flex-start; gap: 14px;
+    padding: 14px 0;
+    border-bottom: 1px solid var(--line-soft);
+  }
+  .dm-row .rt strong {
+    display: block; font-size: 14px; color: var(--cream);
+  }
+  .dm-row .rt span { font-size: 12px; color: var(--text-mute); }
+  .dm-row .rp {
+    font-family: var(--display); font-size: 17px;
+    color: var(--cream); white-space: nowrap;
+  }
+  .dm-row.opt .rp { color: var(--gold); }
+  .dm-row.opt .rt strong::after {
+    content: "option"; font-family: var(--sans);
+    font-size: 9px; font-weight: 700; text-transform: uppercase;
+    letter-spacing: 0.1em; color: var(--gold);
+    border: 1px solid var(--line); border-radius: 2px;
+    padding: 2px 6px; margin-left: 8px;
+    vertical-align: middle;
+  }
+  .dm-total {
+    display: flex; justify-content: space-between;
+    align-items: baseline;
+    margin-top: 14px; padding-top: 16px;
+    border-top: 2px solid var(--gold);
+  }
+  .dm-total .lbl {
+    font-size: 12px; text-transform: uppercase;
+    letter-spacing: 0.1em; color: var(--cream-soft);
+  }
+  .dm-total .amt {
+    font-family: var(--display); font-size: 30px;
+    color: var(--gold);
+  }
+  .dm-foot {
+    font-size: 11px; color: var(--text-mute);
+    text-align: center; margin-top: 14px; font-style: italic;
+  }
+
+  /* ===== FAQ mini ===== */
+  .faq-mini { max-width: 760px; margin: 0 auto; }
+  .faq-item {
+    border-bottom: 1px solid var(--line);
+  }
+  .faq-q {
+    width: 100%; background: none; border: none;
+    cursor: pointer; text-align: left;
+    display: flex; justify-content: space-between;
+    align-items: center; gap: 20px;
+    padding: 24px 4px;
+    font-family: var(--sans); font-size: 17px;
+    font-weight: 600; color: var(--cream);
+  }
+  .faq-q .pm {
+    flex-shrink: 0; width: 22px; height: 22px;
+    position: relative;
+  }
+  .faq-q .pm::before, .faq-q .pm::after {
+    content: ""; position: absolute;
+    background: var(--gold);
+    transition: transform .3s var(--ease);
+  }
+  .faq-q .pm::before {
+    left: 0; top: 50%; width: 100%; height: 2px;
+    transform: translateY(-50%);
+  }
+  .faq-q .pm::after {
+    left: 50%; top: 0; width: 2px; height: 100%;
+    transform: translateX(-50%);
+  }
+  .faq-item.open .pm::after { transform: translateX(-50%) scaleY(0); }
+  .faq-a {
+    max-height: 0; overflow: hidden;
+    transition: max-height .4s var(--ease);
+  }
+  .faq-a p {
+    padding: 0 4px 24px;
+    font-size: 14.5px; color: var(--text-mute);
+    line-height: 1.7;
+  }
+
+  @media (max-width: 980px) {
+    .svc-grid, .proc-grid { grid-template-columns: repeat(2, 1fr); }
+    .feature-grid { grid-template-columns: 1fr; gap: 38px; }
+    .aud-grid { grid-template-columns: 1fr; }
+    .aud-item { border-right: none; border-bottom: 1px solid var(--line-soft); }
+    .strip-grid { grid-template-columns: repeat(2, 1fr); }
+    .strip-item:nth-child(2) { border-right: none; }
+    .strip-item:nth-child(1), .strip-item:nth-child(2) {
+      border-bottom: 1px solid var(--line-soft);
+    }
+  }
+  @media (max-width: 620px) {
+    .svc-grid, .proc-grid, .work-grid { grid-template-columns: 1fr; }
+    .sec { padding: 76px 0; }
+  }
+
+  /* ===== formulaire contact ===== */
+  .contact-form-card {
+    max-width: 620px; margin: 48px auto 0;
+    background: var(--ink-card);
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    padding: 38px 36px;
+    text-align: left;
+  }
+  .cfc-or {
+    text-align: center; font-size: 12px;
+    text-transform: uppercase; letter-spacing: 0.14em;
+    color: var(--text-mute); margin-bottom: 26px !important;
+    font-family: var(--sans) !important;
+  }
+  .cf-row {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+  .cf-field { display: flex; flex-direction: column; gap: 7px; margin-bottom: 16px; }
+  .cf-field label {
+    font-size: 11px; font-weight: 700;
+    text-transform: uppercase; letter-spacing: 0.13em;
+    color: var(--gold);
+  }
+  .cf-field input, .cf-field textarea {
+    background: rgba(28,22,18,0.03);
+    border: 1.5px solid var(--line);
+    color: var(--cream);
+    padding: 13px 15px; border-radius: 8px;
+    font-family: var(--sans); font-size: 15px;
+    outline: none; transition: border-color .2s, background .2s;
+  }
+  .cf-field textarea { resize: vertical; }
+  .cf-field input:focus, .cf-field textarea:focus {
+    border-color: var(--gold);
+    background: rgba(255,255,255,0.7);
+  }
+  .cf-field input::placeholder, .cf-field textarea::placeholder {
+    color: rgba(28,22,18,0.35);
+  }
+  .hp { position: absolute; left: -9999px; }
+  @media (max-width: 560px) {
+    .cf-row { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ============ NAV ============ -->
+<nav class="nav">
+  <a href="index.html" class="nav-logo">
+    La
+    <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <g fill="none" stroke="#c9971f" stroke-width="5" stroke-linecap="round">
+        <circle cx="24" cy="24" r="11"/><path d="M31 31 L48 48"/>
+        <path d="M41 41 L48 34 M45 45 L52 38"/>
+      </g>
+    </svg>
+    Clé
+  </a>
+  <ul class="nav-links">
+    <li><a href="index.html" class="active">Accueil</a></li>
+    <li><a href="services.html">Services</a></li>
+    <li><a href="realisations.html">Réalisations</a></li>
+    <li><a href="defis.html">Défis</a></li>
+    <li><a href="equipe.html">Équipe</a></li>
+    <li><a href="faq.html">FAQ</a></li>
+    <li><a href="#contact" class="nav-cta">Demander un devis</a></li>
+  </ul>
+  <button class="nav-burger" aria-label="Menu"><span></span><span></span><span></span></button>
+</nav>
+
+<!-- ============ HERO ============ -->
+<header class="hero theme-dark">
+  <video class="hero-video" autoplay loop muted playsinline
+         preload="metadata" poster="assets/hero-poster.jpg"
+         src="assets/index-00-f9857dcdc0.mp4"></video>
+  <div class="hero-veil"></div>
+  <div class="hero-inner wrap">
+    <div class="hero-eyebrow eyebrow">Studio de commerce digital · Nîmes</div>
+    <h1 class="h-display">
+      <span class="ln">Des portes</span>
+      <span class="ln serif-accent">qui s'ouvrent.</span>
+    </h1>
+    <p class="hero-sub">
+      Sites web, vidéos publicitaires et devis interactifs. On structure
+      votre présence en ligne — et on la rend rentable.
+    </p>
+    <div class="hero-actions">
+      <a href="#contact" class="btn btn-primary">
+        Demander un devis
+        <svg viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+      <a href="realisations.html" class="btn btn-ghost">Voir nos réalisations</a>
+    </div>
+  </div>
+  <div class="hero-scroll">
+    <span>Explorer</span>
+    <div class="bar"></div>
+  </div>
+</header>
+
+<!-- ============ STRIP ATOUTS ============ -->
+<section class="strip">
+  <div class="strip-grid">
+    <div class="strip-item"><div class="k">3-en-1</div><div class="v">Web, vidéo &amp; outils</div></div>
+    <div class="strip-item"><div class="k">24h</div><div class="v">Délai de réponse</div></div>
+    <div class="strip-item"><div class="k">100%</div><div class="v">Devis clair &amp; sans engagement</div></div>
+    <div class="strip-item"><div class="k">7j/7</div><div class="v">Disponibilité</div></div>
+  </div>
+</section>
+
+<!-- ============ SERVICES ============ -->
+<section class="sec" id="services">
+  <div class="wrap">
+    <div class="sec-head center reveal">
+      <span class="eyebrow">Ce qu'on fait</span>
+      <h2 class="h-display">Trois clés, <span class="serif-accent">une méthode.</span></h2>
+      <p>De la vitrine qui convertit aux vidéos qui font parler de vous —
+         toute la chaîne, au même endroit.</p>
+    </div>
+    <div class="svc-grid">
+      <article class="svc-card reveal" data-d="1">
+        <div class="svc-num">01</div>
+        <svg class="svc-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+          <rect x="2" y="3" width="20" height="14" rx="2"/><path d="M2 8h20M8 21h8M12 17v4"/>
+        </svg>
+        <h3>Sites web</h3>
+        <div class="tagline">design · dev · SEO</div>
+        <p>Vitrines, e-commerce, landing pages. Conçus pour convertir,
+           faciles à maintenir, livrés rapidement.</p>
+      </article>
+      <article class="svc-card reveal" data-d="2">
+        <div class="svc-num">02</div>
+        <svg class="svc-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+          <rect x="2" y="5" width="14" height="14" rx="2"/><path d="M16 9l6-3v12l-6-3"/>
+        </svg>
+        <h3>Vidéos pub</h3>
+        <div class="tagline">pack 11 vidéos</div>
+        <p>Vidéos courtes calibrées pour les formats sociaux.
+           Pré-production, tournage pro, montage et adaptations multi-formats.</p>
+      </article>
+      <article class="svc-card reveal" data-d="3">
+        <div class="svc-num">03</div>
+        <svg class="svc-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+          <path d="M14 2v6h6M8 13h8M8 17h5"/>
+        </svg>
+        <h3>Devis vivant</h3>
+        <div class="tagline">notre signature</div>
+        <p>Plateforme propriétaire de devis interactifs. Vos clients comprennent
+           chaque ligne. Vous gagnez du temps et de la confiance.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ POUR QUI ============ -->
+<section class="audience">
+  <div class="wrap" style="padding-top:84px;padding-bottom:84px;">
+    <div class="sec-head reveal" style="margin-bottom:38px;">
+      <span class="eyebrow">Pour qui</span>
+      <h2 class="h-display" style="font-size:clamp(32px,4.6vw,52px);">
+        On parle <span class="serif-accent">votre langage.</span>
+      </h2>
+    </div>
+    <div class="aud-grid">
+      <div class="aud-item reveal" data-d="1">
+        <div class="big">Artisans &amp; commerces</div>
+        <p>Une vitrine qui donne envie de pousser la porte, en ligne comme
+           en physique.</p>
+      </div>
+      <div class="aud-item reveal" data-d="2">
+        <div class="big">Indépendants</div>
+        <p>Un site, des vidéos et une image qui posent votre sérieux dès
+           le premier contact.</p>
+      </div>
+      <div class="aud-item reveal" data-d="3">
+        <div class="big">Jeunes marques</div>
+        <p>De la création d'identité au lancement — on construit votre
+           présence de zéro.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ RÉALISATIONS ============ -->
+<section class="sec">
+  <div class="wrap">
+    <div class="sec-head center reveal">
+      <span class="eyebrow">Réalisations</span>
+      <h2 class="h-display">Ce qu'on a déjà <span class="serif-accent">déverrouillé.</span></h2>
+      <p>Des univers différents, une même rigueur d'exécution.</p>
+    </div>
+    <div class="work-grid">
+      <a href="realisations.html" class="work-card reveal" data-d="1">
+        <img src="assets/realisations-00-new.jpg" alt="Le devis vivant" />
+        <div class="work-info">
+          <div class="tag">Web app · en ligne</div>
+          <h3>Le devis vivant</h3>
+          <div class="desc">Notre plateforme de devis interactifs.</div>
+        </div>
+      </a>
+      <a href="realisations.html" class="work-card reveal" data-d="2">
+        <img src="assets/realisations-01-111749c289.jpg" alt="Plateforme automobile" />
+        <div class="work-info">
+          <div class="tag">Vitrine · en ligne</div>
+          <h3>Plateforme auto</h3>
+          <div class="desc">Site complet pour un garage : parc, reprise, RDV.</div>
+        </div>
+      </a>
+      <a href="realisations.html" class="work-card reveal" data-d="3">
+        <img src="assets/realisations-02-c8d3119f17.jpg" alt="MEDKEY portfolio" />
+        <div class="work-info">
+          <div class="tag">Portfolio · en ligne</div>
+          <h3>MEDKEY</h3>
+          <div class="desc">Portfolio créatif : direction artistique &amp; vidéo.</div>
+        </div>
+      </a>
+      <a href="realisations.html" class="work-card reveal" data-d="4">
+        <img src="assets/realisations-03-5e6bb2be92.jpg" alt="The K — chaîne YouTube" />
+        <div class="work-info">
+          <div class="tag">YouTube · en cours</div>
+          <h3>The K</h3>
+          <div class="desc">Chaîne de défis sportifs et de rencontres.</div>
+        </div>
+      </a>
+    </div>
+    <div style="text-align:center;margin-top:44px;" class="reveal">
+      <a href="realisations.html" class="btn btn-ghost">Toutes les réalisations</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PROCESS ============ -->
+<section class="sec" style="background:var(--ink-soft);border-top:1px solid var(--line);">
+  <div class="wrap">
+    <div class="sec-head center reveal">
+      <span class="eyebrow">Comment ça se passe</span>
+      <h2 class="h-display">Quatre étapes, <span class="serif-accent">zéro flou.</span></h2>
+    </div>
+    <div class="proc-grid">
+      <div class="proc-step reveal" data-d="1">
+        <div class="n">01</div>
+        <h4>Le brief</h4>
+        <p>On échange pour comprendre votre besoin, votre cible et vos objectifs.</p>
+      </div>
+      <div class="proc-step reveal" data-d="2">
+        <div class="n">02</div>
+        <h4>Le devis vivant</h4>
+        <p>Un chiffrage interactif et détaillé, plus un planning clair. Sans engagement.</p>
+      </div>
+      <div class="proc-step reveal" data-d="3">
+        <div class="n">03</div>
+        <h4>La création</h4>
+        <p>Réalisation par étapes : vous voyez le projet avancer et vous réagissez.</p>
+      </div>
+      <div class="proc-step reveal" data-d="4">
+        <div class="n">04</div>
+        <h4>La mise en ligne</h4>
+        <p>On livre, on met en ligne, on vous accompagne — et on reste joignables.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ DEVIS VIVANT FEATURE ============ -->
+<section class="feature">
+  <div class="wrap" style="padding-top:104px;padding-bottom:104px;">
+    <div class="feature-grid">
+      <div class="feature-text reveal">
+        <span class="eyebrow">Notre signature</span>
+        <h2 class="h-display">Le devis <span class="serif-accent">vivant.</span></h2>
+        <p>Chez La Clé, un devis n'est pas un PDF figé. C'est un document
+           interactif qui décompose chaque dépense, ligne par ligne.</p>
+        <ul class="feature-list">
+          <li>
+            <span class="fi-n">01</span>
+            <span class="fi-t"><strong>Tout est éclairé</strong>
+            <span>Chaque poste est expliqué et justifié. Vous savez ce que vous payez, et pourquoi.</span></span>
+          </li>
+          <li>
+            <span class="fi-n">02</span>
+            <span class="fi-t"><strong>Modulable à la volée</strong>
+            <span>Ajoutez ou retirez des options, le total se recalcule en direct.</span></span>
+          </li>
+          <li>
+            <span class="fi-n">03</span>
+            <span class="fi-t"><strong>À votre image</strong>
+            <span>Un projet validé sans surprise ni zone d'ombre. La transparence comme méthode.</span></span>
+          </li>
+        </ul>
+      </div>
+      <div class="reveal" data-d="2">
+        <div class="devis-mock">
+          <div class="dm-head">
+            <span class="lbl">Proposition · Site + Vidéos</span>
+            <span class="ref">Nº 2026-007</span>
+          </div>
+          <div class="dm-row">
+            <span class="rt"><strong>Site web sur-mesure</strong>
+            <span>Design, responsive, 5 pages, SEO de base.</span></span>
+            <span class="rp">1 200 €</span>
+          </div>
+          <div class="dm-row opt">
+            <span class="rt"><strong>Accompagnement</strong>
+            <span>Formation, suivi 30 jours, maintenance.</span></span>
+            <span class="rp">+ 350 €</span>
+          </div>
+          <div class="dm-row">
+            <span class="rt"><strong>Pack 11 vidéos pub</strong>
+            <span>Tournage, montage, formats sociaux.</span></span>
+            <span class="rp">890 €</span>
+          </div>
+          <div class="dm-row opt">
+            <span class="rt"><strong>Figurants</strong>
+            <span>Casting + prestation jour de tournage.</span></span>
+            <span class="rp">+ 90 €</span>
+          </div>
+          <div class="dm-total">
+            <span class="lbl">Total estimé HT</span>
+            <span class="amt">2 530 €</span>
+          </div>
+          <div class="dm-foot">Aperçu illustratif — chaque devis est unique.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FAQ MINI ============ -->
+<section class="sec">
+  <div class="wrap">
+    <div class="sec-head center reveal">
+      <span class="eyebrow">Questions fréquentes</span>
+      <h2 class="h-display">Avant de <span class="serif-accent">pousser la porte.</span></h2>
+    </div>
+    <div class="faq-mini reveal">
+      <div class="faq-item">
+        <button class="faq-q">Combien coûte un site web ?<span class="pm"></span></button>
+        <div class="faq-a"><p>Le prix dépend du projet : une vitrine simple n'a pas le même budget qu'une plateforme avec réservation ou espace client. Plutôt qu'un tarif unique, on établit un devis clair et détaillé après un premier échange. Aucun engagement.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Le devis est-il payant ou engageant ?<span class="pm"></span></button>
+        <div class="faq-a"><p>Non. Le devis est gratuit et sans engagement. On chiffre clairement, on présente le projet — et si le feeling n'y est pas, vous n'êtes obligé à rien.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Quels sont les délais ?<span class="pm"></span></button>
+        <div class="faq-a"><p>Tout dépend de l'ampleur du projet, mais on travaille vite et par étapes. Un support visuel se livre en quelques jours ; un site web complet demande davantage de temps. Le planning est annoncé dès le devis.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Travaillez-vous uniquement à Nîmes ?<span class="pm"></span></button>
+        <div class="faq-a"><p>La Clé est basée à Nîmes, mais une grande partie du travail se fait à distance. On accompagne des projets partout en France. Pour les tournages vidéo, on en discute selon le lieu.</p></div>
+      </div>
+    </div>
+    <div style="text-align:center;margin-top:38px;" class="reveal">
+      <a href="faq.html" class="btn btn-ghost">Toutes les questions</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CTA CONTACT ============ -->
+<section class="cta-banner" id="contact">
+  <div class="inner wrap">
+    <span class="eyebrow reveal" style="margin-bottom:18px;">Prêt à démarrer</span>
+    <h2 class="h-display reveal" data-d="1">Ouvrons la porte <span class="serif-accent">ensemble.</span></h2>
+    <p class="reveal" data-d="2">
+      Un projet, une idée, un brief même flou. Réservez un appel —
+      on chiffre clair, sans engagement.
+    </p>
+    <div class="reveal" data-d="3" style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap;">
+      <a href="https://calendly.com/" target="_blank" rel="noopener" class="btn btn-primary" id="rdvBtn">
+        Réserver un appel gratuit
+        <svg viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+      <a href="mailto:contact@lacle.fr" class="btn btn-ghost">contact@lacle.fr</a>
+    </div>
+    <p class="reveal" data-d="4" style="font-size:13px;color:var(--text-mute);margin-top:26px;font-family:var(--sans);">
+      Réponse sous 24h ouvrées · Basé à Nîmes, partout en France
+    </p>
+
+    <div class="contact-form-card reveal" data-d="4">
+      <p class="cfc-or">— ou laissez-nous un message —</p>
+      <form name="devis" method="POST" data-netlify="true" netlify-honeypot="bot-field" action="/merci.html">
+        <input type="hidden" name="form-name" value="devis" />
+        <p class="hp"><label>Ne pas remplir : <input name="bot-field" /></label></p>
+        <div class="cf-row">
+          <div class="cf-field">
+            <label for="cn">Votre nom</label>
+            <input type="text" id="cn" name="nom" placeholder="Marie Martin" required />
+          </div>
+          <div class="cf-field">
+            <label for="ce">Email</label>
+            <input type="email" id="ce" name="email" placeholder="vous@exemple.fr" required />
+          </div>
+        </div>
+        <div class="cf-row">
+          <div class="cf-field">
+            <label for="cb">Entreprise <span style="opacity:.5">(facultatif)</span></label>
+            <input type="text" id="cb" name="entreprise" placeholder="Boulangerie Martin" />
+          </div>
+          <div class="cf-field">
+            <label for="ct">Téléphone <span style="opacity:.5">(facultatif)</span></label>
+            <input type="tel" id="ct" name="telephone" placeholder="06 12 34 56 78" />
+          </div>
+        </div>
+        <div class="cf-field">
+          <label for="cm">Votre projet en quelques mots</label>
+          <textarea id="cm" name="message" rows="3" placeholder="Un site, des vidéos, une idée encore floue..." required></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary btn-block">
+          Envoyer ma demande
+          <svg viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-logo">
+          La
+          <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <g fill="none" stroke="#c9971f" stroke-width="5" stroke-linecap="round">
+              <circle cx="24" cy="24" r="11"/><path d="M31 31 L48 48"/>
+              <path d="M41 41 L48 34 M45 45 L52 38"/>
+            </g>
+          </svg>
+          Clé
+        </div>
+        <p class="footer-tag">une aventure à la fois</p>
+      </div>
+      <div class="footer-col">
+        <h4>Le studio</h4>
+        <a href="services.html">Services</a>
+        <a href="realisations.html">Réalisations</a>
+        <a href="defis.html">Défis sport</a>
+        <a href="equipe.html">L'équipe</a>
+        <a href="faq.html">FAQ</a>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <a href="mailto:contact@lacle.fr">contact@lacle.fr</a>
+        <p>Nîmes — France</p>
+        <p>Réponse sous 24h</p>
+        <a href="#contact">Demander un devis</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 La Clé — Studio de commerce digital</span>
+      <span>Nîmes, France</span>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/main.js"></script>
+<script>
+  // FAQ accordéon
+  document.querySelectorAll('.faq-q').forEach(function (q) {
+    q.addEventListener('click', function () {
+      var item = q.parentElement;
+      var a = q.nextElementSibling;
+      var open = item.classList.contains('open');
+      document.querySelectorAll('.faq-item.open').forEach(function (it) {
+        it.classList.remove('open');
+        it.querySelector('.faq-a').style.maxHeight = null;
+      });
+      if (!open) {
+        item.classList.add('open');
+        a.style.maxHeight = a.scrollHeight + 'px';
+      }
+    });
+  });
+</script>
+</body>
+</html>

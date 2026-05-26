@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Défis sport — Chaque clé, une porte | La Clé</title>
+<meta name="description" content="Les défis sport de La Clé : du vélo Nîmes-Marseille au saut en parachute. Pousser le sport pour pousser les rencontres et créer du contenu." />
+<meta name="author" content="La Clé" />
+<meta name="theme-color" content="#161210" />
+<link rel="canonical" href="https://lacle.fr/defis.html" />
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="La Clé" />
+<meta property="og:locale" content="fr_FR" />
+<meta property="og:title" content="Défis sport — Chaque clé, une porte | La Clé" />
+<meta property="og:description" content="Pousser le sport pour pousser les rencontres." />
+<meta property="og:url" content="https://lacle.fr/defis.html" />
+<meta property="og:image" content="https://lacle.fr/assets/og-image.jpg" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Défis sport — Chaque clé, une porte | La Clé" />
+<meta name="twitter:description" content="Pousser le sport pour pousser les rencontres." />
+<meta name="twitter:image" content="https://lacle.fr/assets/og-image.jpg" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Caveat:wght@500;600;700&family=Inter:wght@300;400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="assets/style.css" />
+<style>
+  .sec { padding: 70px 0 110px; }
+
+  .defi {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 0; align-items: stretch;
+    border: 1px solid var(--line);
+    border-radius: 5px; overflow: hidden;
+    margin-bottom: 26px;
+    background: var(--ink-card);
+  }
+  .defi:nth-child(even) .defi-img { order: 2; }
+  .defi-img { position: relative; min-height: 340px; overflow: hidden; }
+  .defi-img img {
+    position: absolute; inset: 0;
+    width: 100%; height: 100%; object-fit: cover;
+    filter: brightness(.78) saturate(1.05);
+    transition: transform .7s var(--ease);
+  }
+  .defi:hover .defi-img img { transform: scale(1.05); }
+  .defi-img.placeholder {
+    background:
+      radial-gradient(circle at 60% 35%, rgba(201,151,31,0.28), transparent 60%),
+      var(--ink-soft);
+    display: flex; align-items: center; justify-content: center;
+  }
+  .defi-img.placeholder svg { width: 88px; height: 88px; opacity: .5; color: var(--gold); }
+  .defi-status {
+    position: absolute; top: 16px; left: 16px;
+    font-size: 10px; font-weight: 700;
+    text-transform: uppercase; letter-spacing: 0.12em;
+    padding: 6px 12px; border-radius: 2px;
+    background: rgba(22,18,16,0.9);
+    border: 1px solid var(--line);
+  }
+  .defi-status.done { color: #6fcf86; border-color: rgba(111,207,134,0.4); }
+  .defi-status.soon { color: var(--gold); }
+  .defi-status.open { color: var(--cream); }
+  .defi-body { padding: 40px 38px; display: flex; flex-direction: column; justify-content: center; }
+  .defi-num {
+    font-family: var(--display); font-size: 13px;
+    letter-spacing: 0.14em; color: var(--gold);
+    margin-bottom: 10px;
+  }
+  .defi-body h2 {
+    font-family: var(--display);
+    font-size: clamp(28px, 3.6vw, 42px);
+    text-transform: uppercase; line-height: 1;
+  }
+  .defi-body .sub {
+    font-family: var(--serif); font-style: italic;
+    font-size: 19px; color: var(--gold);
+    margin: 6px 0 14px;
+  }
+  .defi-body p { font-size: 14.5px; color: var(--text-mute); line-height: 1.65; }
+  .defi-stats {
+    display: flex; gap: 30px; margin-top: 22px;
+    padding-top: 20px; border-top: 1px solid var(--line-soft);
+  }
+  .defi-stats .st .v {
+    font-family: var(--display); font-size: 24px; color: var(--cream);
+  }
+  .defi-stats .st .l {
+    font-size: 10px; text-transform: uppercase;
+    letter-spacing: 0.1em; color: var(--text-mute);
+  }
+  .defi-link {
+    display: inline-flex; align-items: center; gap: 8px;
+    margin-top: 20px; font-size: 12px; font-weight: 700;
+    text-transform: uppercase; letter-spacing: 0.08em;
+    color: var(--gold); transition: gap .2s var(--ease);
+    align-self: flex-start;
+  }
+  .defi-link:hover { gap: 14px; }
+
+  /* formulaire défi */
+  .defi-form-wrap {
+    background: var(--ink-card);
+    border: 1px solid var(--line);
+    border-radius: 5px; padding: 44px 40px;
+    max-width: 620px; margin: 30px auto 0;
+  }
+  .defi-form-wrap h3 {
+    font-family: var(--display); font-size: 30px;
+    text-transform: uppercase; margin-bottom: 6px;
+  }
+  .defi-form-wrap .lead {
+    font-size: 14.5px; color: var(--text-mute);
+    margin-bottom: 26px;
+  }
+  .field { display: flex; flex-direction: column; gap: 7px; margin-bottom: 16px; }
+  .field label {
+    font-size: 11px; font-weight: 700;
+    text-transform: uppercase; letter-spacing: 0.14em;
+    color: var(--gold);
+  }
+  .field input, .field textarea {
+    background: rgba(28,22,18,0.03);
+    border: 1.5px solid var(--line);
+    color: var(--cream);
+    padding: 13px 15px; border-radius: 8px;
+    font-family: var(--sans); font-size: 15px;
+    outline: none; transition: border-color .2s, background .2s;
+  }
+  .field textarea { resize: vertical; }
+  .field input:focus, .field textarea:focus {
+    border-color: var(--gold);
+    background: rgba(255,255,255,0.7);
+  }
+  .field input::placeholder, .field textarea::placeholder { color: rgba(245,237,224,0.35); }
+  .hp { position: absolute; left: -9999px; }
+
+  @media (max-width: 760px) {
+    .defi { grid-template-columns: 1fr; }
+    .defi:nth-child(even) .defi-img { order: 0; }
+    .defi-img { min-height: 240px; }
+  }
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <a href="index.html" class="nav-logo">
+    La
+    <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <g fill="none" stroke="#c9971f" stroke-width="5" stroke-linecap="round">
+        <circle cx="24" cy="24" r="11"/><path d="M31 31 L48 48"/>
+        <path d="M41 41 L48 34 M45 45 L52 38"/>
+      </g>
+    </svg>
+    Clé
+  </a>
+  <ul class="nav-links">
+    <li><a href="index.html">Accueil</a></li>
+    <li><a href="services.html">Services</a></li>
+    <li><a href="realisations.html">Réalisations</a></li>
+    <li><a href="defis.html" class="active">Défis</a></li>
+    <li><a href="equipe.html">Équipe</a></li>
+    <li><a href="faq.html">FAQ</a></li>
+    <li><a href="index.html#contact" class="nav-cta">Demander un devis</a></li>
+  </ul>
+  <button class="nav-burger" aria-label="Menu"><span></span><span></span><span></span></button>
+</nav>
+
+<section class="page-hero">
+  <div class="wrap">
+    <span class="eyebrow">Défis sport</span>
+    <h1 class="h-display">Chaque clé, <span class="serif-accent">une porte.</span></h1>
+    <p>Pousser le sport pour pousser les rencontres. Des défis bien réels —
+       pour relier des villes, des métiers, des gens.</p>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="wrap">
+
+    <article class="defi reveal">
+      <div class="defi-img">
+        <img src="assets/defis-00-e007726ff1.jpg" alt="Défi vélo Nîmes-Marseille" />
+        <span class="defi-status done">Réalisé</span>
+      </div>
+      <div class="defi-body">
+        <div class="defi-num">Défi 01</div>
+        <h2>Nîmes → Marseille</h2>
+        <div class="sub">une aventure à la fois</div>
+        <p>Relier Nîmes à Marseille à vélo. Des kilomètres, des rencontres,
+           des métiers à découvrir le long de la route. Chaque étape devient
+           une clé.</p>
+        <div class="defi-stats">
+          <div class="st"><div class="v">137 km</div><div class="l">Distance</div></div>
+          <div class="st"><div class="v">1 jour</div><div class="l">Format</div></div>
+          <div class="st"><div class="v">∞</div><div class="l">Rencontres</div></div>
+        </div>
+        <a href="https://www.youtube.com/channel/UCWs4CnHRr5wrAAxjyaevR0Q" target="_blank" rel="noopener" class="defi-link">
+          Suivre sur YouTube
+          <svg viewBox="0 0 24 24" width="13" height="13" fill="none"><path d="M7 17L17 7M17 7H8M17 7v9" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+      </div>
+    </article>
+
+    <article class="defi reveal">
+      <div class="defi-img">
+        <img src="assets/defis-01-7970843947.jpg" alt="Défi saut en parachute" />
+        <span class="defi-status done">Réalisé</span>
+      </div>
+      <div class="defi-body">
+        <div class="defi-num">Défi 02</div>
+        <h2>Saut en parachute</h2>
+        <div class="sub">ouvrir la porte du ciel</div>
+        <p>Sauter dans le vide pour ouvrir une nouvelle porte. Adrénaline pure,
+           sensation brute, et la certitude que chaque chute appelle un rebond.</p>
+        <div class="defi-stats">
+          <div class="st"><div class="v">4 000 m</div><div class="l">Altitude</div></div>
+          <div class="st"><div class="v">200 km/h</div><div class="l">Chute libre</div></div>
+        </div>
+      </div>
+    </article>
+
+    <article class="defi reveal">
+      <div class="defi-img">
+        <img src="assets/defis-02-3879e3d5b0.jpg" alt="Défi saut en parapente" />
+        <span class="defi-status done">Réalisé</span>
+      </div>
+      <div class="defi-body">
+        <div class="defi-num">Défi 03</div>
+        <h2>Saut en parapente</h2>
+        <div class="sub">décoller pour mieux voir</div>
+        <p>S'élancer depuis un sommet, planer au-dessus des paysages, prendre
+           de la hauteur pour voir les portes qui s'ouvrent en bas.</p>
+        <div class="defi-stats">
+          <div class="st"><div class="v">2 000 m</div><div class="l">Décollage</div></div>
+          <div class="st"><div class="v">30 min</div><div class="l">Vol libre</div></div>
+        </div>
+      </div>
+    </article>
+
+    <article class="defi reveal">
+      <div class="defi-img placeholder">
+        <span class="defi-status soon">À venir</span>
+        <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="3">
+          <circle cx="24" cy="24" r="13"/><path d="M33 33 L52 52"/>
+          <path d="M44 44 L52 36 M48 48 L56 40"/>
+        </svg>
+      </div>
+      <div class="defi-body">
+        <div class="defi-num">Défi 04</div>
+        <h2>En préparation</h2>
+        <div class="sub">bientôt dévoilé</div>
+        <p>Le prochain défi se prépare. Un nouveau parcours, une nouvelle
+           porte à ouvrir, de nouveaux métiers à rencontrer.</p>
+      </div>
+    </article>
+
+  </div>
+</section>
+
+<!-- proposer un défi -->
+<section class="sec" style="padding-top:0;">
+  <div class="wrap">
+    <div class="defi-form-wrap reveal">
+      <div class="defi-num" style="margin-bottom:6px;">Défi 05 · On écoute</div>
+      <h3>Votre idée ?</h3>
+      <p class="lead">Un défi sportif à imaginer ensemble ? Une cause à soutenir ?
+         Une ville, un métier, une rencontre à provoquer ? Lancez-nous l'idée.</p>
+      <form name="defi" method="POST" data-netlify="true" netlify-honeypot="bot-field" action="/merci.html">
+        <input type="hidden" name="form-name" value="defi" />
+        <p class="hp"><label>Ne pas remplir : <input name="bot-field" /></label></p>
+        <div class="field">
+          <label for="dn">Votre nom</label>
+          <input type="text" id="dn" name="nom" placeholder="Ex : Marie Martin" required />
+        </div>
+        <div class="field">
+          <label for="de">Email</label>
+          <input type="email" id="de" name="email" placeholder="vous@exemple.fr" required />
+        </div>
+        <div class="field">
+          <label for="dd">Votre défi</label>
+          <textarea id="dd" name="defi" rows="3" placeholder="Une ville, un métier, une cause, une rencontre à provoquer..." required></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary btn-block">
+          Nous lancer le défi
+          <svg viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-logo">
+          La
+          <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <g fill="none" stroke="#c9971f" stroke-width="5" stroke-linecap="round">
+              <circle cx="24" cy="24" r="11"/><path d="M31 31 L48 48"/>
+              <path d="M41 41 L48 34 M45 45 L52 38"/>
+            </g>
+          </svg>
+          Clé
+        </div>
+        <p class="footer-tag">une aventure à la fois</p>
+      </div>
+      <div class="footer-col">
+        <h4>Le studio</h4>
+        <a href="services.html">Services</a>
+        <a href="realisations.html">Réalisations</a>
+        <a href="defis.html">Défis sport</a>
+        <a href="equipe.html">L'équipe</a>
+        <a href="faq.html">FAQ</a>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <a href="mailto:contact@lacle.fr">contact@lacle.fr</a>
+        <p>Nîmes — France</p>
+        <p>Réponse sous 24h</p>
+        <a href="index.html#contact">Demander un devis</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 La Clé — Studio de commerce digital</span>
+      <span>Nîmes, France</span>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/main.js"></script>
+</body>
+</html>

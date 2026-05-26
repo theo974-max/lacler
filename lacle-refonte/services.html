@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Services — Sites web, vidéos &amp; devis vivants | La Clé</title>
+<meta name="description" content="Sites web sur-mesure, packs de vidéos publicitaires et notre devis vivant interactif. Toute la chaîne pour passer en ligne et convertir." />
+<meta name="author" content="La Clé" />
+<meta name="theme-color" content="#161210" />
+<link rel="canonical" href="https://lacle.fr/services.html" />
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="La Clé" />
+<meta property="og:locale" content="fr_FR" />
+<meta property="og:title" content="Services — Sites web, vidéos & devis vivants | La Clé" />
+<meta property="og:description" content="Sites web, vidéos publicitaires et devis interactifs. Toute la chaîne, au même endroit." />
+<meta property="og:url" content="https://lacle.fr/services.html" />
+<meta property="og:image" content="https://lacle.fr/assets/og-image.jpg" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Services — Sites web, vidéos & devis vivants | La Clé" />
+<meta name="twitter:description" content="Sites web, vidéos publicitaires et devis interactifs. Toute la chaîne, au même endroit." />
+<meta name="twitter:image" content="https://lacle.fr/assets/og-image.jpg" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Caveat:wght@500;600;700&family=Inter:wght@300;400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="assets/style.css" />
+<style>
+  .sec { padding: 100px 0; }
+  /* service blocks détaillés */
+  .svc-detail {
+    display: grid; grid-template-columns: 80px 1fr auto;
+    gap: 32px; align-items: start;
+    padding: 46px 0;
+    border-bottom: 1px solid var(--line);
+  }
+  .svc-detail:last-of-type { border-bottom: none; }
+  .svc-detail .num {
+    font-family: var(--display);
+    font-size: 60px; color: var(--gold);
+    line-height: 0.8;
+  }
+  .svc-detail .body h3 {
+    font-family: var(--display);
+    font-size: clamp(28px, 4vw, 42px);
+    text-transform: uppercase; margin-bottom: 4px;
+  }
+  .svc-detail .body .tl {
+    font-size: 12px; text-transform: uppercase;
+    letter-spacing: 0.14em; color: var(--gold);
+    margin-bottom: 16px;
+  }
+  .svc-detail .body p {
+    font-size: 15.5px; color: var(--cream-soft);
+    max-width: 56ch; margin-bottom: 16px;
+  }
+  .svc-detail .body .opt {
+    display: inline-block;
+    font-size: 13px; color: var(--text-mute);
+    border: 1px solid var(--line); border-radius: 2px;
+    padding: 7px 14px;
+  }
+  .svc-detail .body .opt b { color: var(--gold); }
+  .svc-detail .ico {
+    width: 54px; height: 54px; color: var(--gold);
+    justify-self: end;
+  }
+
+  /* devis vivant feature */
+  .feature { background: var(--ink-soft); border-top: 1px solid var(--line); }
+  .feature-grid {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 56px; align-items: center;
+  }
+  .feature-text h2 { font-size: clamp(36px,5.2vw,62px); margin: 16px 0 18px; }
+  .feature-text > p {
+    font-family: var(--serif); font-size: 19px;
+    color: var(--cream-soft); margin-bottom: 26px;
+  }
+  .feature-list { list-style: none; }
+  .feature-list li {
+    display: flex; gap: 14px; padding: 16px 0;
+    border-bottom: 1px solid var(--line-soft);
+  }
+  .feature-list li:last-child { border-bottom: none; }
+  .feature-list .fi-n {
+    font-family: var(--display); font-size: 15px;
+    color: var(--gold); flex-shrink: 0; padding-top: 2px;
+  }
+  .feature-list .fi-t strong {
+    display: block; font-size: 15px; color: var(--cream); margin-bottom: 2px;
+  }
+  .feature-list .fi-t span { font-size: 13.5px; color: var(--text-mute); }
+
+  .devis-mock {
+    background: var(--ink-card); border: 1px solid var(--line);
+    border-radius: 12px; padding: 26px;
+    box-shadow: 0 24px 50px rgba(28,22,18,0.10), 0 2px 8px rgba(28,22,18,0.04);
+  }
+  .dm-head {
+    display: flex; justify-content: space-between; align-items: baseline;
+    padding-bottom: 14px; margin-bottom: 6px;
+    border-bottom: 1px solid var(--line);
+  }
+  .dm-head .lbl {
+    font-size: 10px; letter-spacing: 0.14em;
+    text-transform: uppercase; color: var(--gold);
+  }
+  .dm-head .ref { font-size: 11px; color: var(--text-mute); }
+  .dm-row {
+    display: flex; justify-content: space-between;
+    align-items: flex-start; gap: 14px; padding: 14px 0;
+    border-bottom: 1px solid var(--line-soft);
+  }
+  .dm-row .rt strong { display: block; font-size: 14px; color: var(--cream); }
+  .dm-row .rt span { font-size: 12px; color: var(--text-mute); }
+  .dm-row .rp {
+    font-family: var(--display); font-size: 17px;
+    color: var(--cream); white-space: nowrap;
+  }
+  .dm-row.opt .rp { color: var(--gold); }
+  .dm-row.opt .rt strong::after {
+    content: "option"; font-family: var(--sans);
+    font-size: 9px; font-weight: 700; text-transform: uppercase;
+    letter-spacing: 0.1em; color: var(--gold);
+    border: 1px solid var(--line); border-radius: 2px;
+    padding: 2px 6px; margin-left: 8px; vertical-align: middle;
+  }
+  .dm-total {
+    display: flex; justify-content: space-between; align-items: baseline;
+    margin-top: 14px; padding-top: 16px;
+    border-top: 2px solid var(--gold);
+  }
+  .dm-total .lbl {
+    font-size: 12px; text-transform: uppercase;
+    letter-spacing: 0.1em; color: var(--cream-soft);
+  }
+  .dm-total .amt { font-family: var(--display); font-size: 30px; color: var(--gold); }
+  .dm-foot {
+    font-size: 11px; color: var(--text-mute);
+    text-align: center; margin-top: 14px; font-style: italic;
+  }
+
+  @media (max-width: 860px) {
+    .svc-detail { grid-template-columns: 1fr; gap: 14px; }
+    .svc-detail .ico { display: none; }
+    .feature-grid { grid-template-columns: 1fr; gap: 38px; }
+  }
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <a href="index.html" class="nav-logo">
+    La
+    <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <g fill="none" stroke="#c9971f" stroke-width="5" stroke-linecap="round">
+        <circle cx="24" cy="24" r="11"/><path d="M31 31 L48 48"/>
+        <path d="M41 41 L48 34 M45 45 L52 38"/>
+      </g>
+    </svg>
+    Clé
+  </a>
+  <ul class="nav-links">
+    <li><a href="index.html">Accueil</a></li>
+    <li><a href="services.html" class="active">Services</a></li>
+    <li><a href="realisations.html">Réalisations</a></li>
+    <li><a href="defis.html">Défis</a></li>
+    <li><a href="equipe.html">Équipe</a></li>
+    <li><a href="faq.html">FAQ</a></li>
+    <li><a href="index.html#contact" class="nav-cta">Demander un devis</a></li>
+  </ul>
+  <button class="nav-burger" aria-label="Menu"><span></span><span></span><span></span></button>
+</nav>
+
+<section class="page-hero">
+  <div class="wrap">
+    <span class="eyebrow">Services</span>
+    <h1 class="h-display">Tout pour <span class="serif-accent">passer en ligne.</span></h1>
+    <p>On couvre la chaîne complète — du site qui convertit aux vidéos
+       qui font parler de vous.</p>
+  </div>
+</section>
+
+<!-- ===== SERVICES DÉTAILLÉS ===== -->
+<section class="sec">
+  <div class="wrap">
+
+    <article class="svc-detail reveal">
+      <div class="num">01</div>
+      <div class="body">
+        <h3>Sites web sur-mesure</h3>
+        <div class="tl">design · dev · SEO</div>
+        <p>Vitrines, e-commerce, landing pages. Conçus pour convertir,
+           faciles à maintenir, livrés rapidement. Une présence en ligne
+           qui travaille pour vous, pas l'inverse.</p>
+        <div class="opt">+ Option accompagnement : <b>formation, suivi 30 jours</b></div>
+      </div>
+      <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+        <rect x="2" y="3" width="20" height="14" rx="2"/><path d="M2 8h20M8 21h8M12 17v4"/>
+      </svg>
+    </article>
+
+    <article class="svc-detail reveal">
+      <div class="num">02</div>
+      <div class="body">
+        <h3>Vidéos publicitaires</h3>
+        <div class="tl">pack 11 vidéos</div>
+        <p>Pack de 11 vidéos courtes, calibrées pour les formats sociaux.
+           Pré-production, tournage en conditions pro, montage et
+           adaptations multi-formats.</p>
+        <div class="opt">+ <b>90 €</b> figurants pour l'ensemble du pack</div>
+      </div>
+      <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+        <rect x="2" y="5" width="14" height="14" rx="2"/><path d="M16 9l6-3v12l-6-3"/>
+      </svg>
+    </article>
+
+    <article class="svc-detail reveal">
+      <div class="num">03</div>
+      <div class="body">
+        <h3>Devis vivants</h3>
+        <div class="tl">notre signature</div>
+        <p>Plateforme propriétaire de devis interactifs. Vos clients
+           comprennent chaque ligne, modulent les options à la volée,
+           et valident en confiance. Vous gagnez du temps.</p>
+        <div class="opt">Inclus dans <b>chaque projet</b> La Clé</div>
+      </div>
+      <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+        <path d="M14 2v6h6M8 13h8M8 17h5"/>
+      </svg>
+    </article>
+
+    <article class="svc-detail reveal">
+      <div class="num">04</div>
+      <div class="body">
+        <h3>Livraison express</h3>
+        <div class="tl">délais maîtrisés</div>
+        <p>On s'occupe de tout, dans le moins de temps possible. Brief
+           structuré, cycles courts, exécution propre, mise en ligne
+           accompagnée. La vitesse sans la précipitation.</p>
+        <div class="opt">Planning annoncé <b>dès le devis</b></div>
+      </div>
+      <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+        <circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/>
+      </svg>
+    </article>
+
+  </div>
+</section>
+
+<!-- ===== DEVIS VIVANT FEATURE ===== -->
+<section class="feature">
+  <div class="wrap" style="padding-top:104px;padding-bottom:104px;">
+    <div class="feature-grid">
+      <div class="feature-text reveal">
+        <span class="eyebrow">Notre signature</span>
+        <h2 class="h-display">Le devis <span class="serif-accent">vivant.</span></h2>
+        <p>Chez La Clé, un devis n'est pas un PDF figé. C'est un document
+           interactif qui décompose chaque dépense, ligne par ligne, pour
+           que vous compreniez exactement où va votre budget.</p>
+        <ul class="feature-list">
+          <li>
+            <span class="fi-n">01</span>
+            <span class="fi-t"><strong>Tout est éclairé</strong>
+            <span>Chaque poste est expliqué, justifié, contextualisé.</span></span>
+          </li>
+          <li>
+            <span class="fi-n">02</span>
+            <span class="fi-t"><strong>Modulable à la volée</strong>
+            <span>Ajoutez ou retirez des options, le total se recalcule.</span></span>
+          </li>
+          <li>
+            <span class="fi-n">03</span>
+            <span class="fi-t"><strong>À votre image</strong>
+            <span>Un projet validé sans surprise ni zone d'ombre.</span></span>
+          </li>
+        </ul>
+      </div>
+      <div class="reveal" data-d="2">
+        <div class="devis-mock">
+          <div class="dm-head">
+            <span class="lbl">Proposition · Site + Vidéos</span>
+            <span class="ref">Nº 2026-007</span>
+          </div>
+          <div class="dm-row">
+            <span class="rt"><strong>Site web sur-mesure</strong>
+            <span>Design, intégration responsive, 5 pages, SEO de base.</span></span>
+            <span class="rp">1 200 €</span>
+          </div>
+          <div class="dm-row opt">
+            <span class="rt"><strong>Accompagnement</strong>
+            <span>Formation, suivi 30 jours, maintenance technique.</span></span>
+            <span class="rp">+ 350 €</span>
+          </div>
+          <div class="dm-row">
+            <span class="rt"><strong>Pack 11 vidéos publicitaires</strong>
+            <span>Tournage, montage, livrables formats sociaux.</span></span>
+            <span class="rp">890 €</span>
+          </div>
+          <div class="dm-row opt">
+            <span class="rt"><strong>Figurants</strong>
+            <span>Casting + prestation jour de tournage.</span></span>
+            <span class="rp">+ 90 €</span>
+          </div>
+          <div class="dm-total">
+            <span class="lbl">Total estimé HT</span>
+            <span class="amt">2 530 €</span>
+          </div>
+          <div class="dm-foot">Aperçu illustratif — chaque devis est unique.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CTA ===== -->
+<section class="cta-banner">
+  <div class="inner wrap">
+    <span class="eyebrow reveal" style="margin-bottom:18px;">Prêt à démarrer</span>
+    <h2 class="h-display reveal" data-d="1">Un projet <span class="serif-accent">en tête ?</span></h2>
+    <p class="reveal" data-d="2">Réservez un appel — on chiffre clair, sans engagement.</p>
+    <div class="reveal" data-d="3" style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap;">
+      <a href="https://calendly.com/" target="_blank" rel="noopener" class="btn btn-primary">
+        Réserver un appel gratuit
+        <svg viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+      <a href="mailto:contact@lacle.fr" class="btn btn-ghost">contact@lacle.fr</a>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-logo">
+          La
+          <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <g fill="none" stroke="#c9971f" stroke-width="5" stroke-linecap="round">
+              <circle cx="24" cy="24" r="11"/><path d="M31 31 L48 48"/>
+              <path d="M41 41 L48 34 M45 45 L52 38"/>
+            </g>
+          </svg>
+          Clé
+        </div>
+        <p class="footer-tag">une aventure à la fois</p>
+      </div>
+      <div class="footer-col">
+        <h4>Le studio</h4>
+        <a href="services.html">Services</a>
+        <a href="realisations.html">Réalisations</a>
+        <a href="defis.html">Défis sport</a>
+        <a href="equipe.html">L'équipe</a>
+        <a href="faq.html">FAQ</a>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <a href="mailto:contact@lacle.fr">contact@lacle.fr</a>
+        <p>Nîmes — France</p>
+        <p>Réponse sous 24h</p>
+        <a href="index.html#contact">Demander un devis</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 La Clé — Studio de commerce digital</span>
+      <span>Nîmes, France</span>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/main.js"></script>
+</body>
+</html>
