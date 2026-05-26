@@ -235,11 +235,10 @@ html.theme-night .nav.scrolled {
 }
 
 /* ============================================================
-   THEME TOGGLE — bouton rond flottant à droite de la pill nav
+   BOUTONS FLOTTANTS (theme toggle + recherche) — à droite de la pill
    ============================================================ */
-.theme-toggle {
+.nav-btn {
   position: fixed; top: 18px;
-  left: calc(50% + 1px); /* sera décalé par JS si la pill est large */
   z-index: 1000;
   width: 44px; height: 44px;
   border-radius: 50%;
@@ -251,31 +250,135 @@ html.theme-night .nav.scrolled {
   cursor: pointer;
   display: flex; align-items: center; justify-content: center;
   color: var(--cream);
-  transition: top .35s var(--ease), background .5s var(--ease),
+  padding: 0;
+  transition: background .5s var(--ease),
               border-color .5s var(--ease), box-shadow .5s var(--ease),
-              transform .25s var(--ease), color .5s var(--ease);
-  /* positionnement réel calculé par JS — ce style est un fallback */
+              transform .25s var(--ease), color .25s var(--ease);
+  /* top et left réels calculés par JS pour alignement parfait avec la pill */
 }
-.theme-toggle:hover {
+.nav-btn:hover {
   transform: scale(1.08);
   color: var(--gold);
+  border-color: rgba(201,151,31,0.35);
 }
-.theme-toggle:active { transform: scale(.95); }
-.theme-toggle svg {
+.nav-btn:active { transform: scale(.95); }
+.nav-btn svg {
   width: 20px; height: 20px;
-  transition: transform .4s var(--ease), opacity .3s;
 }
-.theme-toggle .icon-sun { display: none; }
-.theme-toggle .icon-moon { display: block; }
-html.theme-night .theme-toggle {
+html.theme-night .nav-btn {
   background: rgba(22,18,16,0.72);
   border-color: rgba(201,151,31,0.22);
   box-shadow: 0 10px 36px rgba(0,0,0,0.45);
 }
-html.theme-night .theme-toggle.scrolled,
-.theme-toggle.scrolled { top: 12px; }
+html.theme-night .nav-btn:hover { border-color: rgba(201,151,31,0.55); }
+
+/* Theme toggle : bascule l'icône selon le mode */
+.theme-toggle .icon-sun { display: none; }
+.theme-toggle .icon-moon { display: block; }
 html.theme-night .theme-toggle .icon-sun { display: block; }
 html.theme-night .theme-toggle .icon-moon { display: none; }
+
+/* ============================================================
+   MODAL DE RECHERCHE (command palette)
+   ============================================================ */
+.search-modal {
+  position: fixed; inset: 0; z-index: 2000;
+  display: flex; align-items: flex-start; justify-content: center;
+  padding: 100px 20px 20px;
+  opacity: 0; pointer-events: none;
+  transition: opacity .25s var(--ease);
+}
+.search-modal.open { opacity: 1; pointer-events: auto; }
+.search-backdrop {
+  position: absolute; inset: 0;
+  background: rgba(22,18,16,0.55);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+.search-card {
+  position: relative;
+  width: 100%; max-width: 580px;
+  background: var(--ink-card);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  box-shadow: 0 24px 80px rgba(22,18,16,0.30), 0 6px 18px rgba(22,18,16,0.15);
+  overflow: hidden;
+  transform: translateY(-12px) scale(.98);
+  transition: transform .25s var(--ease);
+}
+.search-modal.open .search-card { transform: none; }
+.search-input-wrap {
+  display: flex; align-items: center; gap: 12px;
+  padding: 16px 18px;
+  border-bottom: 1px solid var(--line);
+}
+.search-input-wrap svg {
+  width: 18px; height: 18px;
+  color: var(--text-mute);
+  flex-shrink: 0;
+}
+.search-input-wrap input {
+  flex: 1; background: none; border: none; outline: none;
+  font-family: var(--sans); font-size: 16px;
+  color: var(--cream);
+  padding: 4px 0;
+}
+.search-input-wrap input::placeholder { color: var(--text-mute); }
+.search-input-wrap kbd {
+  font-family: var(--sans); font-size: 11px; font-weight: 600;
+  padding: 3px 7px; border-radius: 5px;
+  background: var(--ink-soft);
+  border: 1px solid var(--line);
+  color: var(--text-mute);
+}
+.search-results {
+  list-style: none;
+  max-height: 60vh; overflow-y: auto;
+  padding: 8px;
+}
+.search-results li a {
+  display: flex; flex-direction: column; gap: 3px;
+  padding: 12px 14px;
+  border-radius: 8px;
+  color: var(--cream);
+  transition: background .15s;
+}
+.search-results li a:hover,
+.search-results li a.focus {
+  background: var(--ink-soft);
+}
+.search-results li a:hover { color: var(--cream); }
+.search-results .sr-title {
+  font-size: 14.5px; font-weight: 600;
+  display: flex; align-items: center; gap: 10px;
+}
+.search-results .sr-tag {
+  font-size: 10px; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.1em;
+  color: var(--gold);
+  padding: 2px 7px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+}
+.search-results .sr-desc {
+  font-size: 12.5px; color: var(--text-mute);
+}
+.search-empty {
+  padding: 28px 18px; text-align: center;
+  color: var(--text-mute); font-size: 13.5px;
+}
+.search-footer {
+  display: flex; gap: 14px; padding: 10px 16px;
+  border-top: 1px solid var(--line);
+  font-size: 11px; color: var(--text-mute);
+}
+.search-footer kbd {
+  font-family: var(--sans); font-size: 10.5px;
+  padding: 1.5px 5px; border-radius: 4px;
+  background: var(--ink-soft);
+  border: 1px solid var(--line);
+  margin-right: 4px;
+}
 
 /* ============================================================
    BUTTONS
