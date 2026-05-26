@@ -24,6 +24,8 @@
 <meta name="twitter:image" content="https://lacle.fr/assets/og-image.jpg" />
 <script>
 (function(){var t;try{t=localStorage.getItem('lacle-theme');}catch(e){}if(!t){var d=new Date(),h=d.getHours()+d.getMinutes()/60,m=d.getMonth();var r=[8,7,7,7,6,6,6,7,7,8,7,8][m],s=[17,18,19,20,21,21,21,21,20,19,17,17][m];t=(h>=r&&h<s)?'day':'night';}if(t==='night')document.documentElement.classList.add('theme-night');})();
+// Intro : joue une seule fois par session (resté au sein du même onglet)
+(function(){try{if(sessionStorage.getItem('lacle-intro-done')){document.documentElement.classList.add('intro-skip');}else{document.documentElement.classList.add('intro-playing');sessionStorage.setItem('lacle-intro-done','1');}}catch(e){document.documentElement.classList.add('intro-playing');}})();
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -47,6 +49,79 @@
 }
 </script>
 <style>
+  /* ===== INTRO — animation d'ouverture (homepage only) ===== */
+  /* lock du scroll tant que l'intro joue */
+  html.intro-playing, html.intro-playing body { overflow: hidden; }
+  html.intro-done, html.intro-done body { overflow: visible; }
+  html.intro-skip #intro { display: none; }
+
+  #intro {
+    position: fixed; inset: 0; z-index: 10000;
+    background: #ffffff;
+    display: flex; align-items: center; justify-content: center;
+    overflow: hidden;
+    animation: intro-rise 1.2s cubic-bezier(.76,0,.24,1) 2.4s forwards;
+    will-change: transform;
+  }
+  /* "tongue" de liquide qui dépasse en bas → effet de vague qui monte */
+  #intro::after {
+    content: "";
+    position: absolute;
+    left: -5%; right: -5%;
+    top: 100%;
+    height: 11vw;
+    background: #ffffff;
+    border-radius: 0 0 50% 50% / 0 0 100% 100%;
+  }
+  @keyframes intro-rise {
+    to { transform: translateY(-115%); }
+  }
+
+  .intro-logo {
+    display: flex; align-items: center;
+    gap: 0.06em;
+    font-family: 'Instrument Serif', Georgia, serif;
+    font-style: italic;
+    font-weight: 400;
+    color: #1c1612;
+    font-size: clamp(72px, 13vw, 168px);
+    letter-spacing: -0.015em;
+    line-height: 1;
+  }
+  .il-text {
+    opacity: 0;
+    transform: translateY(14px);
+    animation: il-text-in 0.7s cubic-bezier(.2,.9,.3,1) forwards;
+  }
+  .il-la  { animation-delay: 0.85s; }
+  .il-cle { animation-delay: 1.05s; }
+  @keyframes il-text-in {
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* la clé tombe avec un petit rebond — atterrit pile à 0.9s */
+  .il-key {
+    width: 0.78em; height: 0.78em;
+    transform: translateY(-130vh) rotate(-25deg);
+    animation: il-key-fall 0.95s cubic-bezier(.55,.05,.45,1) forwards;
+    margin: 0 -0.02em 0 0.02em;
+    filter: drop-shadow(0 4px 10px rgba(28,22,18,0.18));
+    align-self: center;
+  }
+  @keyframes il-key-fall {
+    0%   { transform: translateY(-130vh) rotate(-25deg); }
+    62%  { transform: translateY(22px)  rotate(12deg); }
+    78%  { transform: translateY(-12px) rotate(-5deg); }
+    90%  { transform: translateY(6px)   rotate(2deg); }
+    100% { transform: translateY(0)     rotate(0deg); }
+  }
+
+  /* respecte prefers-reduced-motion : skip propre */
+  @media (prefers-reduced-motion: reduce) {
+    #intro { display: none; }
+    html.intro-playing, html.intro-playing body { overflow: visible; }
+  }
+
   /* ===== HERO ===== */
   .hero {
     position: relative; min-height: 100svh;
@@ -564,6 +639,21 @@
 </style>
 </head>
 <body>
+
+<!-- ============ INTRO — clé qui tombe + vague liquide ============ -->
+<div id="intro" aria-hidden="true">
+  <div class="intro-logo">
+    <span class="il-text il-la">La</span>
+    <svg class="il-key" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <g fill="none" stroke="#c9971f" stroke-width="5" stroke-linecap="round">
+        <circle cx="24" cy="24" r="11"/>
+        <path d="M31 31 L48 48"/>
+        <path d="M41 41 L48 34 M45 45 L52 38"/>
+      </g>
+    </svg>
+    <span class="il-text il-cle">Clé</span>
+  </div>
+</div>
 
 <!-- ============ NAV ============ -->
 <nav class="nav">

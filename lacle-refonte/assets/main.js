@@ -276,4 +276,28 @@
       track.appendChild(clone);
     });
   });
+
+  // ============================================================
+  // INTRO — nettoyage après la vague (déverrouille le scroll, retire l'overlay)
+  // Synchronisé avec le CSS : 2.4s delay + 1.2s rise = 3.6s
+  // ============================================================
+  var docEl = document.documentElement;
+  if (docEl.classList.contains('intro-playing')) {
+    var intro = document.getElementById('intro');
+    var killIntro = function () {
+      docEl.classList.remove('intro-playing');
+      docEl.classList.add('intro-done');
+      if (intro && intro.parentNode) intro.remove();
+    };
+    // fin auto (synchro avec le CSS : 2.4s delay + 1.2s rise = 3.6s)
+    setTimeout(killIntro, 3650);
+    // skip au clic ou Esc
+    if (intro) intro.addEventListener('click', killIntro);
+    document.addEventListener('keydown', function onKey (e) {
+      if (e.key === 'Escape' && docEl.classList.contains('intro-playing')) {
+        killIntro();
+        document.removeEventListener('keydown', onKey);
+      }
+    });
+  }
 })();
