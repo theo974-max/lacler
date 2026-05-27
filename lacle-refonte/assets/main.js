@@ -107,6 +107,7 @@
     { title: 'Sites web sur-mesure', tag: 'Service',  desc: 'Vitrine, e-commerce, plateformes',              url: 'services.html' },
     { title: 'Vidéos publicitaires', tag: 'Service',  desc: 'Spots, motion, contenus social',                url: 'services.html' },
     { title: 'Devis interactifs',    tag: 'Service',  desc: 'Notre outil propriétaire : Le devis vivant',    url: 'services.html' },
+    { title: 'Tarifs',               tag: 'Page',     desc: 'Fourchettes de prix transparentes',             url: 'services.html#tarifs' },
     { title: 'Réalisations',         tag: 'Page',     desc: 'Nos projets clients',                           url: 'realisations.html' },
     { title: 'Le devis vivant',      tag: 'Projet',   desc: 'Plateforme propriétaire de devis interactifs',  url: 'realisations.html' },
     { title: 'Plateforme automobile',tag: 'Projet',   desc: 'Site complet pour un garage',                   url: 'realisations.html' },
@@ -289,8 +290,8 @@
       docEl.classList.add('intro-done');
       if (intro && intro.parentNode) intro.remove();
     };
-    // fin auto (synchro avec le CSS : 2.4s delay + 1.5s wave morph + 0.25s fade = 4.15s)
-    setTimeout(killIntro, 4150);
+    // fin auto (synchro avec le CSS : 1.45s delay + 1.05s wave morph + 0.2s fade ≈ 2.7s)
+    setTimeout(killIntro, 2700);
     // skip au clic ou Esc
     if (intro) intro.addEventListener('click', killIntro);
     document.addEventListener('keydown', function onKey (e) {

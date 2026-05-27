@@ -71,7 +71,7 @@
   }
   /* fade-out du conteneur en toute fin pour que rien ne reste */
   #intro {
-    animation: intro-fadeout 0.25s ease 3.65s forwards;
+    animation: intro-fadeout 0.2s ease 2.45s forwards;
   }
   @keyframes intro-fadeout {
     to { opacity: 0; visibility: hidden; }
@@ -88,8 +88,8 @@
     font-size: clamp(72px, 13vw, 168px);
     letter-spacing: -0.015em;
     line-height: 1;
-    /* fade-out synchronisé avec le pic de la vague (50% de la morph = ~3.15s) */
-    animation: intro-logo-out 0.55s cubic-bezier(.55,0,.45,1) 2.65s forwards;
+    /* fade-out synchronisé avec le pic de la vague */
+    animation: intro-logo-out 0.4s cubic-bezier(.55,0,.45,1) 1.7s forwards;
   }
   @keyframes intro-logo-out {
     to { opacity: 0; transform: translateY(-22px); }
@@ -97,10 +97,10 @@
   .il-text {
     opacity: 0;
     transform: translateY(14px);
-    animation: il-text-in 0.7s cubic-bezier(.2,.9,.3,1) forwards;
+    animation: il-text-in 0.55s cubic-bezier(.2,.9,.3,1) forwards;
   }
-  .il-la  { animation-delay: 0.85s; }
-  .il-cle { animation-delay: 1.05s; }
+  .il-la  { animation-delay: 0.55s; }
+  .il-cle { animation-delay: 0.72s; }
   @keyframes il-text-in {
     to { opacity: 1; transform: translateY(0); }
   }
@@ -109,7 +109,7 @@
   .il-key {
     width: 0.78em; height: 0.78em;
     transform: translateY(-130vh) rotate(-25deg);
-    animation: il-key-fall 0.95s cubic-bezier(.55,.05,.45,1) forwards;
+    animation: il-key-fall 0.65s cubic-bezier(.55,.05,.45,1) forwards;
     margin: 0 -0.02em 0 0.02em;
     filter: drop-shadow(0 4px 10px rgba(28,22,18,0.18));
     align-self: center;
@@ -263,6 +263,17 @@
   .svc-card p {
     font-size: 14.5px; color: var(--text-mute);
     line-height: 1.65;
+  }
+  .svc-card .svc-price {
+    margin-top: 18px; padding-top: 16px;
+    border-top: 1px solid var(--line-soft);
+    font-size: 12.5px; color: var(--text-mute);
+    text-transform: uppercase; letter-spacing: 0.08em;
+  }
+  .svc-card .svc-price strong {
+    color: var(--gold); font-weight: 700;
+    font-family: var(--display); letter-spacing: 0.04em;
+    font-size: 14px;
   }
 
   /* ===== POUR QUI ===== */
@@ -653,8 +664,8 @@
     <path fill="#ffffff" d="M0,0 H100 V100 H0 Z">
       <animate
         attributeName="d"
-        dur="1.5s"
-        begin="2.4s"
+        dur="1.05s"
+        begin="1.45s"
         fill="freeze"
         calcMode="spline"
         keyTimes="0; 0.12; 0.42; 0.72; 1"
@@ -779,6 +790,7 @@
         <div class="tagline">design · dev · SEO</div>
         <p>Vitrines, e-commerce, landing pages. Conçus pour convertir,
            faciles à maintenir, livrés rapidement.</p>
+        <div class="svc-price">À partir de <strong>1 900 € HT</strong></div>
       </article>
       <article class="svc-card reveal" data-d="2">
         <div class="svc-num">02</div>
@@ -786,9 +798,10 @@
           <rect x="2" y="5" width="14" height="14" rx="2"/><path d="M16 9l6-3v12l-6-3"/>
         </svg>
         <h3>Vidéos pub</h3>
-        <div class="tagline">pack 11 vidéos</div>
+        <div class="tagline">spots & formats sociaux</div>
         <p>Vidéos courtes calibrées pour les formats sociaux.
            Pré-production, tournage pro, montage et adaptations multi-formats.</p>
+        <div class="svc-price">À partir de <strong>1 200 € HT</strong></div>
       </article>
       <article class="svc-card reveal" data-d="3">
         <div class="svc-num">03</div>
@@ -800,6 +813,7 @@
         <div class="tagline">notre signature</div>
         <p>Plateforme propriétaire de devis interactifs. Vos clients comprennent
            chaque ligne. Vous gagnez du temps et de la confiance.</p>
+        <div class="svc-price"><strong>Inclus dans chaque projet</strong></div>
       </article>
     </div>
   </div>
@@ -914,13 +928,15 @@
   </div>
 </section>
 
-<!-- ============ AVIS CLIENTS — marquee flottant ============ -->
+<!-- ============ ENGAGEMENTS — marquee flottant (anciennement avis) ============ -->
+<!-- NB : converti d'avis fictifs en engagements vérifiables (légalement safe).
+     Quand vous aurez de vrais avis clients, remplacer le contenu des cards. -->
 <section class="testi-section">
   <div class="wrap">
     <div class="sec-head center reveal">
-      <span class="eyebrow">Avis clients</span>
-      <h2 class="h-display">Ce qu'ils en disent <span class="serif-accent">après livraison.</span></h2>
-      <p>Notre objectif n°1 : que chaque projet livré devienne un projet recommandé.</p>
+      <span class="eyebrow">Nos engagements</span>
+      <h2 class="h-display">Ce qu'on garantit <span class="serif-accent">avant même de signer.</span></h2>
+      <p>Pas de promesse marketing : des règles concrètes qu'on s'impose sur chaque projet.</p>
     </div>
   </div>
 
@@ -931,62 +947,62 @@
       <div class="testi-track">
 
         <article class="testi-card">
-          <div class="testi-stars" aria-label="5 sur 5">
+          <div class="testi-stars" aria-label="Engagement clé">
             <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 7h7l-5.5 4.5 2 7.5L12 17l-6.5 4 2-7.5L2 9h7z"/></svg>
             <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 7h7l-5.5 4.5 2 7.5L12 17l-6.5 4 2-7.5L2 9h7z"/></svg>
             <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 7h7l-5.5 4.5 2 7.5L12 17l-6.5 4 2-7.5L2 9h7z"/></svg>
             <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 7h7l-5.5 4.5 2 7.5L12 17l-6.5 4 2-7.5L2 9h7z"/></svg>
             <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 7h7l-5.5 4.5 2 7.5L12 17l-6.5 4 2-7.5L2 9h7z"/></svg>
           </div>
-          <p class="testi-quote">"Site livré en 3 semaines, et notre CA a bondi dès le premier mois. Le devis vivant nous a convaincus dès le départ — tout est limpide."</p>
+          <p class="testi-quote">Le devis vivant est <strong>gratuit</strong>. Vous le recevez, vous le partagez, vous ne payez que si vous signez. Aucune carte demandée à l'avance.</p>
           <div class="testi-author">
-            <div class="testi-avatar">SL</div>
-            <div class="who"><strong>Sarah Lopez</strong><span>Restaurant Chez Pelo</span></div>
+            <div class="testi-avatar">01</div>
+            <div class="who"><strong>Zéro engagement</strong><span>Devis sans inscription</span></div>
           </div>
         </article>
 
         <article class="testi-card">
-          <div class="testi-stars" aria-label="5 sur 5">
+          <div class="testi-stars" aria-label="Engagement clé">
             <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 7h7l-5.5 4.5 2 7.5L12 17l-6.5 4 2-7.5L2 9h7z"/></svg>
             <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 7h7l-5.5 4.5 2 7.5L12 17l-6.5 4 2-7.5L2 9h7z"/></svg>
             <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 7h7l-5.5 4.5 2 7.5L12 17l-6.5 4 2-7.5L2 9h7z"/></svg>
             <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 7h7l-5.5 4.5 2 7.5L12 17l-6.5 4 2-7.5L2 9h7z"/></svg>
             <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 7h7l-5.5 4.5 2 7.5L12 17l-6.5 4 2-7.5L2 9h7z"/></svg>
           </div>
-          <p class="testi-quote">"Aymen et Théo ont compris notre univers en un seul appel. Vidéo livrée, +180% de vues sur Instagram dans la foulée."</p>
+          <p class="testi-quote">Date de livraison <strong>contractuelle</strong>, écrite noir sur blanc dès le devis. On dépasse ? Une remise s'applique automatiquement.</p>
           <div class="testi-author">
-            <div class="testi-avatar">LM</div>
-            <div class="who"><strong>Lucie Marin</strong><span>Bloom · concept store</span></div>
+            <div class="testi-avatar">02</div>
+            <div class="who"><strong>Délais garantis</strong><span>Ou remise auto</span></div>
           </div>
         </article>
 
         <article class="testi-card">
-          <div class="testi-stars" aria-label="5 sur 5">
+          <div class="testi-stars" aria-label="Engagement clé">
             <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 7h7l-5.5 4.5 2 7.5L12 17l-6.5 4 2-7.5L2 9h7z"/></svg>
             <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 7h7l-5.5 4.5 2 7.5L12 17l-6.5 4 2-7.5L2 9h7z"/></svg>
             <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 7h7l-5.5 4.5 2 7.5L12 17l-6.5 4 2-7.5L2 9h7z"/></svg>
             <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 7h7l-5.5 4.5 2 7.5L12 17l-6.5 4 2-7.5L2 9h7z"/></svg>
             <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 7h7l-5.5 4.5 2 7.5L12 17l-6.5 4 2-7.5L2 9h7z"/></svg>
           </div>
-          <p class="testi-quote">"Plateforme auto solide, design qui nous ressemble vraiment. Et un suivi après livraison qu'on n'avait jamais eu ailleurs."</p>
+          <p class="testi-quote">Vous voyez le projet avancer <strong>chaque semaine</strong>. Pas de boîte noire pendant 2 mois — un point régulier, un lien de prévisualisation, et c'est tout.</p>
           <div class="testi-author">
-            <div class="testi-avatar">KB</div>
-            <div class="who"><strong>Karim Benyamina</strong><span>Garage K-Auto</span></div>
+            <div class="testi-avatar">03</div>
+            <div class="who"><strong>Transparence totale</strong><span>Point hebdo + accès live</span></div>
           </div>
         </article>
 
         <article class="testi-card">
-          <div class="testi-stars" aria-label="5 sur 5">
+          <div class="testi-stars" aria-label="Engagement clé">
             <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 7h7l-5.5 4.5 2 7.5L12 17l-6.5 4 2-7.5L2 9h7z"/></svg>
             <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 7h7l-5.5 4.5 2 7.5L12 17l-6.5 4 2-7.5L2 9h7z"/></svg>
             <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 7h7l-5.5 4.5 2 7.5L12 17l-6.5 4 2-7.5L2 9h7z"/></svg>
             <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 7h7l-5.5 4.5 2 7.5L12 17l-6.5 4 2-7.5L2 9h7z"/></svg>
             <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 7h7l-5.5 4.5 2 7.5L12 17l-6.5 4 2-7.5L2 9h7z"/></svg>
           </div>
-          <p class="testi-quote">"Le devis vivant a complètement changé ma façon de signer. Mes clients comprennent enfin ce qu'ils achètent, et ça signe deux fois plus vite."</p>
+          <p class="testi-quote">Vous récupérez les <strong>fichiers sources</strong> à la livraison : design, code, montages, projets vidéo. Aucun lock-in, jamais.</p>
           <div class="testi-author">
-            <div class="testi-avatar">PR</div>
-            <div class="who"><strong>Pierre Renaud</strong><span>Renaud Architecture</span></div>
+            <div class="testi-avatar">04</div>
+            <div class="who"><strong>Vos fichiers, à vous</strong><span>Sources livrées à 100%</span></div>
           </div>
         </article>
 
@@ -998,62 +1014,62 @@
       <div class="testi-track">
 
         <article class="testi-card">
-          <div class="testi-stars" aria-label="5 sur 5">
+          <div class="testi-stars" aria-label="Engagement clé">
             <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 7h7l-5.5 4.5 2 7.5L12 17l-6.5 4 2-7.5L2 9h7z"/></svg>
             <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 7h7l-5.5 4.5 2 7.5L12 17l-6.5 4 2-7.5L2 9h7z"/></svg>
             <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 7h7l-5.5 4.5 2 7.5L12 17l-6.5 4 2-7.5L2 9h7z"/></svg>
             <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 7h7l-5.5 4.5 2 7.5L12 17l-6.5 4 2-7.5L2 9h7z"/></svg>
             <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 7h7l-5.5 4.5 2 7.5L12 17l-6.5 4 2-7.5L2 9h7z"/></svg>
           </div>
-          <p class="testi-quote">"Travail propre, prix justes, livraison pile à la date. C'est devenu rare. On les recommande à tout notre réseau."</p>
+          <p class="testi-quote">Réponse à votre demande de devis sous <strong>24 h ouvrées</strong>. Pas un mail générique : un brief lu, des questions précises.</p>
           <div class="testi-author">
-            <div class="testi-avatar">EF</div>
-            <div class="who"><strong>Élise Fontaine</strong><span>Studio Élise</span></div>
+            <div class="testi-avatar">05</div>
+            <div class="who"><strong>Réactivité</strong><span>Réponse en moins de 24 h</span></div>
           </div>
         </article>
 
         <article class="testi-card">
-          <div class="testi-stars" aria-label="5 sur 5">
+          <div class="testi-stars" aria-label="Engagement clé">
             <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 7h7l-5.5 4.5 2 7.5L12 17l-6.5 4 2-7.5L2 9h7z"/></svg>
             <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 7h7l-5.5 4.5 2 7.5L12 17l-6.5 4 2-7.5L2 9h7z"/></svg>
             <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 7h7l-5.5 4.5 2 7.5L12 17l-6.5 4 2-7.5L2 9h7z"/></svg>
             <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 7h7l-5.5 4.5 2 7.5L12 17l-6.5 4 2-7.5L2 9h7z"/></svg>
             <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 7h7l-5.5 4.5 2 7.5L12 17l-6.5 4 2-7.5L2 9h7z"/></svg>
           </div>
-          <p class="testi-quote">"Réactivité hors norme. Une équipe qui prend ton projet comme si c'était le sien. C'est rare et précieux."</p>
+          <p class="testi-quote">Pas satisfait de la première maquette ? On retravaille <strong>sans surfacturer</strong>. Un projet livré = un projet validé par vous.</p>
           <div class="testi-author">
-            <div class="testi-avatar">MV</div>
-            <div class="who"><strong>Marc Vidal</strong><span>Trésor Sud</span></div>
+            <div class="testi-avatar">06</div>
+            <div class="who"><strong>Itérations incluses</strong><span>Jusqu'à validation</span></div>
           </div>
         </article>
 
         <article class="testi-card">
-          <div class="testi-stars" aria-label="5 sur 5">
+          <div class="testi-stars" aria-label="Engagement clé">
             <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 7h7l-5.5 4.5 2 7.5L12 17l-6.5 4 2-7.5L2 9h7z"/></svg>
             <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 7h7l-5.5 4.5 2 7.5L12 17l-6.5 4 2-7.5L2 9h7z"/></svg>
             <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 7h7l-5.5 4.5 2 7.5L12 17l-6.5 4 2-7.5L2 9h7z"/></svg>
             <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 7h7l-5.5 4.5 2 7.5L12 17l-6.5 4 2-7.5L2 9h7z"/></svg>
             <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 7h7l-5.5 4.5 2 7.5L12 17l-6.5 4 2-7.5L2 9h7z"/></svg>
           </div>
-          <p class="testi-quote">"On avait tout testé avant de tomber sur eux. Maintenant c'est notre seul prestataire web et vidéo."</p>
+          <p class="testi-quote">Un point d'entrée unique : <strong>Aymen ou Théo</strong> directement, jamais un compte de support anonyme. WhatsApp, mail, ou téléphone.</p>
           <div class="testi-author">
-            <div class="testi-avatar">AD</div>
-            <div class="who"><strong>Aurore Dimitri</strong><span>Aurélien Immo</span></div>
+            <div class="testi-avatar">07</div>
+            <div class="who"><strong>Contact direct</strong><span>Pas d'intermédiaire</span></div>
           </div>
         </article>
 
         <article class="testi-card">
-          <div class="testi-stars" aria-label="5 sur 5">
+          <div class="testi-stars" aria-label="Engagement clé">
             <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 7h7l-5.5 4.5 2 7.5L12 17l-6.5 4 2-7.5L2 9h7z"/></svg>
             <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 7h7l-5.5 4.5 2 7.5L12 17l-6.5 4 2-7.5L2 9h7z"/></svg>
             <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 7h7l-5.5 4.5 2 7.5L12 17l-6.5 4 2-7.5L2 9h7z"/></svg>
             <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 7h7l-5.5 4.5 2 7.5L12 17l-6.5 4 2-7.5L2 9h7z"/></svg>
             <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 7h7l-5.5 4.5 2 7.5L12 17l-6.5 4 2-7.5L2 9h7z"/></svg>
           </div>
-          <p class="testi-quote">"Une vraie maîtrise du brief au pixel. Premier projet à peine livré, on a déjà lancé le second."</p>
+          <p class="testi-quote">Site livré = <strong>30 jours de suivi inclus</strong>. Bug, ajustement, question hébergement, on reste là — pas de "vous êtes livré, débrouillez-vous".</p>
           <div class="testi-author">
-            <div class="testi-avatar">TL</div>
-            <div class="who"><strong>Thomas Léger</strong><span>Léger Coaching</span></div>
+            <div class="testi-avatar">08</div>
+            <div class="who"><strong>Suivi post-livraison</strong><span>30 jours inclus</span></div>
           </div>
         </article>
 
@@ -1089,6 +1105,13 @@
             <span>Un projet validé sans surprise ni zone d'ombre. La transparence comme méthode.</span></span>
           </li>
         </ul>
+        <div style="display:flex;gap:14px;flex-wrap:wrap;margin-top:30px;">
+          <a href="https://devis-client.vercel.app" target="_blank" rel="noopener" class="btn btn-primary">
+            Voir un devis vivant en démo
+            <svg viewBox="0 0 24 24" fill="none"><path d="M7 17L17 7M17 7H8M17 7v9" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <a href="#contact" class="btn btn-ghost">Le mien gratuitement</a>
+        </div>
       </div>
       <div class="reveal" data-d="2">
         <div class="devis-mock">
@@ -1236,6 +1259,7 @@
       <div class="footer-col">
         <h4>Le studio</h4>
         <a href="services.html">Services</a>
+        <a href="services.html#tarifs">Tarifs</a>
         <a href="realisations.html">Réalisations</a>
         <a href="defis.html">Défis sport</a>
         <a href="equipe.html">L'équipe</a>

@@ -70,6 +70,94 @@
     justify-self: end;
   }
 
+  /* ===== PRICING — fourchettes transparentes ===== */
+  .pricing-section {
+    padding: 100px 0;
+    background: var(--ink-soft);
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+  }
+  .pricing-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 22px; margin-top: 50px;
+  }
+  .price-card {
+    background: var(--ink-card);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    padding: 34px 30px 30px;
+    display: flex; flex-direction: column;
+    position: relative;
+    transition: transform .3s var(--ease), border-color .3s, box-shadow .3s;
+  }
+  .price-card:hover {
+    transform: translateY(-5px);
+    border-color: rgba(201,151,31,0.42);
+    box-shadow: 0 18px 40px rgba(28,22,18,0.10);
+  }
+  .price-card.featured {
+    border-color: var(--gold);
+    box-shadow: 0 18px 40px rgba(201,151,31,0.18);
+  }
+  .price-badge {
+    position: absolute; top: -12px; right: 22px;
+    background: var(--gold); color: var(--on-gold);
+    font-size: 10.5px; font-weight: 700;
+    text-transform: uppercase; letter-spacing: 0.1em;
+    padding: 5px 11px; border-radius: 999px;
+  }
+  .price-cat {
+    font-family: var(--display);
+    font-size: 13px; color: var(--gold);
+    letter-spacing: 0.12em; margin-bottom: 8px;
+  }
+  .price-card h3 {
+    font-family: var(--display); font-size: 26px;
+    text-transform: uppercase; margin-bottom: 14px;
+  }
+  .price-amount {
+    display: flex; align-items: baseline; gap: 4px;
+    margin-bottom: 6px;
+  }
+  .price-amount .from {
+    font-size: 11px; text-transform: uppercase;
+    letter-spacing: 0.14em; color: var(--text-mute);
+    margin-right: 6px;
+  }
+  .price-amount .num {
+    font-family: var(--display);
+    font-size: 44px; color: var(--cream); line-height: 1;
+  }
+  .price-amount .currency { font-family: var(--display); font-size: 24px; color: var(--cream); }
+  .price-amount .ht { font-size: 12px; color: var(--text-mute); margin-left: 6px; }
+  .price-card .delay {
+    font-size: 13px; color: var(--gold);
+    font-style: italic; margin-bottom: 22px;
+  }
+  .price-list { list-style: none; flex: 1; margin-bottom: 26px; }
+  .price-list li {
+    font-size: 13.5px; color: var(--cream-soft);
+    padding: 9px 0; padding-left: 24px;
+    position: relative; line-height: 1.5;
+    border-bottom: 1px solid var(--line-soft);
+  }
+  .price-list li:last-child { border-bottom: none; }
+  .price-list li::before {
+    content: ""; position: absolute; left: 0; top: 14px;
+    width: 14px; height: 8px;
+    border-left: 2px solid var(--gold);
+    border-bottom: 2px solid var(--gold);
+    transform: rotate(-45deg);
+  }
+  .pricing-note {
+    text-align: center; max-width: 600px; margin: 38px auto 0;
+    font-size: 13.5px; color: var(--text-mute);
+    font-family: var(--serif); font-style: italic;
+  }
+  @media (max-width: 920px) {
+    .pricing-grid { grid-template-columns: 1fr; gap: 26px; }
+  }
+
   /* devis vivant feature */
   .feature { background: var(--ink-soft); border-top: 1px solid var(--line); }
   .feature-grid {
@@ -269,6 +357,92 @@
   </div>
 </section>
 
+<!-- ===== PRICING — fourchettes transparentes ===== -->
+<section class="pricing-section" id="tarifs">
+  <div class="wrap">
+    <div class="sec-head center reveal">
+      <span class="eyebrow">Tarifs indicatifs</span>
+      <h2 class="h-display">Des fourchettes <span class="serif-accent">claires.</span></h2>
+      <p style="font-family:var(--serif);font-size:clamp(17px,2.1vw,21px);color:var(--cream-soft);">
+        Le prix final dépend de la complexité du projet. Ces fourchettes vous donnent un repère honnête avant même de demander un devis.
+      </p>
+    </div>
+
+    <div class="pricing-grid">
+
+      <div class="price-card reveal" data-d="1">
+        <div class="price-cat">Site web</div>
+        <h3>Vitrine</h3>
+        <div class="price-amount">
+          <span class="from">à partir de</span>
+          <span class="num">1 900</span>
+          <span class="currency">€</span>
+          <span class="ht">HT</span>
+        </div>
+        <div class="delay">Livraison en 2 à 3 semaines</div>
+        <ul class="price-list">
+          <li>Jusqu'à 6 pages sur-mesure</li>
+          <li>Design responsive desktop & mobile</li>
+          <li>SEO de base + page Google Business</li>
+          <li>Hébergement & nom de domaine 1 an</li>
+          <li>Formation pour modifier vos contenus</li>
+          <li>30 jours de suivi post-livraison</li>
+        </ul>
+        <a href="index.html#contact" class="btn btn-ghost btn-block">Demander un devis</a>
+      </div>
+
+      <div class="price-card featured reveal" data-d="2">
+        <span class="price-badge">Le plus demandé</span>
+        <div class="price-cat">Site web avancé</div>
+        <h3>E-commerce / Plateforme</h3>
+        <div class="price-amount">
+          <span class="from">à partir de</span>
+          <span class="num">4 500</span>
+          <span class="currency">€</span>
+          <span class="ht">HT</span>
+        </div>
+        <div class="delay">Livraison en 4 à 6 semaines</div>
+        <ul class="price-list">
+          <li>Catalogue / espace membre / réservation</li>
+          <li>Paiement intégré (Stripe, PayPal, etc.)</li>
+          <li>Tableau de bord pour gérer vos contenus</li>
+          <li>SEO avancé + Google Analytics</li>
+          <li>Tests cross-browsers & cross-devices</li>
+          <li>30 jours de suivi inclus</li>
+        </ul>
+        <a href="index.html#contact" class="btn btn-primary btn-block">Demander un devis</a>
+      </div>
+
+      <div class="price-card reveal" data-d="3">
+        <div class="price-cat">Vidéo publicitaire</div>
+        <h3>Spot vidéo</h3>
+        <div class="price-amount">
+          <span class="from">à partir de</span>
+          <span class="num">1 200</span>
+          <span class="currency">€</span>
+          <span class="ht">HT</span>
+        </div>
+        <div class="delay">Livraison en 2 à 4 semaines</div>
+        <ul class="price-list">
+          <li>Storyboard & scénario sur-mesure</li>
+          <li>Tournage demi-journée à 2 jours</li>
+          <li>Montage + étalonnage + sound design</li>
+          <li>Formats verticaux & horizontaux livrés</li>
+          <li>Sous-titrage FR (et EN sur demande)</li>
+          <li>Cession des droits diffusion 2 ans</li>
+        </ul>
+        <a href="index.html#contact" class="btn btn-ghost btn-block">Demander un devis</a>
+      </div>
+
+    </div>
+
+    <p class="pricing-note reveal">
+      Devis interactif gratuit en 24 h — vous voyez exactement ce que vous payez,
+      ligne par ligne, et vous ne signez que si vous êtes convaincu.
+    </p>
+  </div>
+</section>
+
 <!-- ===== DEVIS VIVANT FEATURE ===== -->
 <section class="feature">
   <div class="wrap" style="padding-top:104px;padding-bottom:104px;">
@@ -369,6 +543,7 @@
       <div class="footer-col">
         <h4>Le studio</h4>
         <a href="services.html">Services</a>
+        <a href="services.html#tarifs">Tarifs</a>
         <a href="realisations.html">Réalisations</a>
         <a href="defis.html">Défis sport</a>
         <a href="equipe.html">L'équipe</a>
