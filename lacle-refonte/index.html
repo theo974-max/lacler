@@ -71,7 +71,7 @@
   }
   /* fade-out du conteneur en toute fin pour que rien ne reste */
   #intro {
-    animation: intro-fadeout 0.2s ease 2.45s forwards;
+    animation: intro-fadeout 0.25s ease 3.3s forwards;
   }
   @keyframes intro-fadeout {
     to { opacity: 0; visibility: hidden; }
@@ -88,8 +88,8 @@
     font-size: clamp(72px, 13vw, 168px);
     letter-spacing: -0.015em;
     line-height: 1;
-    /* fade-out synchronisé avec le pic de la vague */
-    animation: intro-logo-out 0.4s cubic-bezier(.55,0,.45,1) 1.7s forwards;
+    /* fade-out synchronisé avec le pic de la vague liquide */
+    animation: intro-logo-out 0.45s cubic-bezier(.55,0,.45,1) 1.85s forwards;
   }
   @keyframes intro-logo-out {
     to { opacity: 0; transform: translateY(-22px); }
@@ -690,27 +690,56 @@
 </head>
 <body>
 
-<!-- ============ INTRO — clé qui tombe + vague liquide ============ -->
+<!-- ============ INTRO — clé qui tombe + vague liquide gooey ============ -->
 <div id="intro" aria-hidden="true">
-  <!-- la vague EST le fond blanc : un path SVG qui se déforme et remonte -->
+  <!-- la vague EST le fond blanc : un path SVG qui se déforme et remonte,
+       avec un filtre "gooey" pour bords liquides et une goutte qui se détache au pic -->
   <svg class="intro-wave" preserveAspectRatio="none" viewBox="0 0 100 100" aria-hidden="true">
-    <path fill="#ffffff" d="M0,0 H100 V100 H0 Z">
-      <animate
-        attributeName="d"
-        dur="1.05s"
-        begin="1.45s"
-        fill="freeze"
-        calcMode="spline"
-        keyTimes="0; 0.12; 0.42; 0.72; 1"
-        keySplines="0.45 0 0.4 1; 0.55 0 0.3 1; 0.5 0 0.3 1; 0.45 0 0.55 1"
-        values="
-          M0,0 H100 V100 H0 Z;
-          M0,0 H100 V94 Q50,114 0,94 Z;
-          M0,0 H100 V62 Q50,30 0,62 Z;
-          M0,0 H100 V18 Q50,-12 0,18 Z;
-          M0,0 H100 V-22 Q50,-54 0,-22 Z"
-      />
-    </path>
+    <defs>
+      <!-- gooey filter : blur + threshold → membrane fluide aux bords organiques -->
+      <filter id="liquid-gooey" x="-10%" y="-10%" width="120%" height="120%">
+        <feGaussianBlur in="SourceGraphic" stdDeviation="1.4" result="blur" />
+        <feColorMatrix in="blur" mode="matrix"
+          values="1 0 0 0 0
+                  0 1 0 0 0
+                  0 0 1 0 0
+                  0 0 0 24 -11" result="goo" />
+        <feComposite in="SourceGraphic" in2="goo" operator="atop" />
+      </filter>
+    </defs>
+    <g filter="url(#liquid-gooey)">
+      <!-- vague principale : 6 keyframes, easing syrupy -->
+      <path fill="#ffffff" d="M0,0 H100 V100 H0 Z">
+        <animate
+          attributeName="d"
+          dur="1.3s"
+          begin="1.85s"
+          fill="freeze"
+          calcMode="spline"
+          keyTimes="0; 0.10; 0.28; 0.52; 0.78; 1"
+          keySplines="0.35 0 0.3 1; 0.55 0 0.3 1; 0.5 0 0.3 1; 0.45 0 0.45 1; 0.45 0 0.55 1"
+          values="
+            M0,0 H100 V100 H0 Z;
+            M0,0 H100 V96 Q72,116 50,102 T0,96 Z;
+            M0,0 H100 V76 Q68,52 38,70 T0,76 Z;
+            M0,0 H100 V42 Q62,12 32,38 T0,42 Z;
+            M0,0 H100 V10 Q58,-18 40,4 T0,10 Z;
+            M0,0 H100 V-28 Q55,-58 45,-28 T0,-28 Z"
+        />
+      </path>
+      <!-- goutte qui se détache au pic de la vague pour renforcer le feel liquide -->
+      <ellipse cx="50" cy="80" rx="0" ry="0" fill="#ffffff">
+        <animate attributeName="cy" begin="2.65s" dur="0.7s" fill="freeze"
+                 calcMode="spline" keySplines="0.35 0 0.6 1"
+                 values="55; 95; 118" keyTimes="0; 0.6; 1" />
+        <animate attributeName="rx" begin="2.65s" dur="0.7s" fill="freeze"
+                 calcMode="spline" keySplines="0.4 0 0.6 1"
+                 values="0; 7; 4; 0" keyTimes="0; 0.25; 0.7; 1" />
+        <animate attributeName="ry" begin="2.65s" dur="0.7s" fill="freeze"
+                 calcMode="spline" keySplines="0.4 0 0.6 1"
+                 values="0; 5; 8; 0" keyTimes="0; 0.25; 0.7; 1" />
+      </ellipse>
+    </g>
   </svg>
   <div class="intro-logo">
     <span class="il-text il-la">La</span>

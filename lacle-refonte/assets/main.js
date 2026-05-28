@@ -290,8 +290,8 @@
       docEl.classList.add('intro-done');
       if (intro && intro.parentNode) intro.remove();
     };
-    // fin auto (synchro avec le CSS : 1.45s delay + 1.05s wave morph + 0.2s fade ≈ 2.7s)
-    setTimeout(killIntro, 2700);
+    // fin auto (synchro CSS : 1.85s wave delay + 1.3s morph + 0.25s fade ≈ 3.4s)
+    setTimeout(killIntro, 3550);
     // skip au clic ou Esc
     if (intro) intro.addEventListener('click', killIntro);
     document.addEventListener('keydown', function onKey (e) {
