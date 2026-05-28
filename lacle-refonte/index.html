@@ -71,7 +71,7 @@
   }
   /* fade-out du conteneur en toute fin pour que rien ne reste */
   #intro {
-    animation: intro-fadeout 0.2s ease 2.9s forwards;
+    animation: intro-fadeout 0.25s ease 3.2s forwards;
   }
   @keyframes intro-fadeout {
     to { opacity: 0; visibility: hidden; }
@@ -692,27 +692,35 @@
 
 <!-- ============ INTRO — clé qui tombe + vague liquide ============ -->
 <div id="intro" aria-hidden="true">
-  <!-- la vague EST le fond blanc : path SVG qui se déforme et remonte.
-       Simplifié pour la fluidité : pas de filtre gooey (lourd GPU),
-       7 keyframes symétriques, easing uniforme → mouvement continu fluide -->
+  <!-- Vague liquide : filtre gooey léger pour bords organiques + courbes
+       de plus en plus prononcées (stretch liquide) + easing snappy -->
   <svg class="intro-wave" preserveAspectRatio="none" viewBox="0 0 100 100" aria-hidden="true">
-    <path fill="#ffffff" d="M0,0 H100 V100 H0 Z" style="will-change: d;">
+    <defs>
+      <filter id="liquid-gooey" x="-5%" y="-5%" width="110%" height="110%">
+        <feGaussianBlur in="SourceGraphic" stdDeviation="0.9" result="b"/>
+        <feColorMatrix in="b"
+          values="1 0 0 0 0
+                  0 1 0 0 0
+                  0 0 1 0 0
+                  0 0 0 20 -9"/>
+      </filter>
+    </defs>
+    <path fill="#ffffff" filter="url(#liquid-gooey)" d="M0,0 H100 V100 H0 Z" style="will-change: d;">
       <animate
         attributeName="d"
-        dur="1.1s"
+        dur="1.4s"
         begin="1.85s"
         fill="freeze"
         calcMode="spline"
-        keyTimes="0; 0.08; 0.25; 0.42; 0.6; 0.8; 1"
-        keySplines="0.42 0 0.58 1; 0.42 0 0.58 1; 0.42 0 0.58 1; 0.42 0 0.58 1; 0.42 0 0.58 1; 0.42 0 0.58 1"
+        keyTimes="0; 0.12; 0.32; 0.55; 0.78; 1"
+        keySplines="0.5 0 0.4 1; 0.55 0 0.4 1; 0.5 0 0.35 1; 0.5 0 0.4 1; 0.4 0 0.6 1"
         values="
           M0,0 H100 V100 H0 Z;
-          M0,0 H100 V97 Q50,114 0,97 Z;
-          M0,0 H100 V82 Q50,58 0,82 Z;
-          M0,0 H100 V58 Q50,30 0,58 Z;
-          M0,0 H100 V32 Q50,4 0,32 Z;
-          M0,0 H100 V6 Q50,-22 0,6 Z;
-          M0,0 H100 V-25 Q50,-55 0,-25 Z"
+          M0,0 H100 V96 Q50,122 0,96 Z;
+          M0,0 H100 V70 Q50,32 0,70 Z;
+          M0,0 H100 V36 Q50,-8 0,36 Z;
+          M0,0 H100 V4 Q50,-38 0,4 Z;
+          M0,0 H100 V-30 Q50,-68 0,-30 Z"
       />
     </path>
   </svg>
