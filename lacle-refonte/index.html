@@ -4,7 +4,7 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>La Clé — Studio de commerce digital à Nîmes</title>
-<meta name="description" content="Studio de commerce digital à Nîmes : sites web sur-mesure, vidéos publicitaires et devis interactifs. Un brief, un chiffrage clair, une livraison rapide." />
+<meta name="description" content="Studio web & vidéo à Nîmes. Sites vitrine livrés en 3 semaines à partir de 1900 € HT. Devis interactif gratuit en 24 h, sans engagement. Délais contractuels." />
 <meta name="author" content="La Clé" />
 <meta name="theme-color" content="#161210" />
 <link rel="canonical" href="https://lacle.fr/" />
@@ -13,19 +13,19 @@
 <meta property="og:site_name" content="La Clé" />
 <meta property="og:locale" content="fr_FR" />
 <meta property="og:title" content="La Clé — Studio de commerce digital à Nîmes" />
-<meta property="og:description" content="Sites web, vidéos publicitaires et devis interactifs. On chiffre clair, on livre vite." />
+<meta property="og:description" content="Sites web livrés en 3 semaines à partir de 1900 € HT. Devis interactif gratuit en 24 h. Studio Nîmes." />
 <meta property="og:url" content="https://lacle.fr/" />
 <meta property="og:image" content="https://lacle.fr/assets/og-image.jpg" />
 <meta property="og:image:width" content="1200" />
 <meta property="og:image:height" content="630" />
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:title" content="La Clé — Studio de commerce digital à Nîmes" />
-<meta name="twitter:description" content="Sites web, vidéos publicitaires et devis interactifs. On chiffre clair, on livre vite." />
+<meta name="twitter:description" content="Sites web livrés en 3 semaines à partir de 1900 € HT. Devis gratuit en 24 h. Studio Nîmes." />
 <meta name="twitter:image" content="https://lacle.fr/assets/og-image.jpg" />
 <script>
 (function(){var t;try{t=localStorage.getItem('lacle-theme');}catch(e){}if(!t){var d=new Date(),h=d.getHours()+d.getMinutes()/60,m=d.getMonth();var r=[8,7,7,7,6,6,6,7,7,8,7,8][m],s=[17,18,19,20,21,21,21,21,20,19,17,17][m];t=(h>=r&&h<s)?'day':'night';}if(t==='night')document.documentElement.classList.add('theme-night');})();
-// Intro : joue une seule fois par session (resté au sein du même onglet)
-(function(){try{if(sessionStorage.getItem('lacle-intro-done')){document.documentElement.classList.add('intro-skip');}else{document.documentElement.classList.add('intro-playing');sessionStorage.setItem('lacle-intro-done','1');}}catch(e){document.documentElement.classList.add('intro-playing');}})();
+// Intro : joue une seule fois par appareil (localStorage). Skip auto sur mobile.
+(function(){try{var d=localStorage.getItem('lacle-intro-done');var isMobile=window.matchMedia('(max-width:700px)').matches;if(d||isMobile){document.documentElement.classList.add('intro-skip');}else{document.documentElement.classList.add('intro-playing');localStorage.setItem('lacle-intro-done','1');}}catch(e){document.documentElement.classList.add('intro-skip');}})();
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -193,6 +193,14 @@
     max-width: 540px; margin-bottom: 40px;
   }
   .hero-actions { display: flex; gap: 16px; flex-wrap: wrap; }
+  .hero-trust {
+    display: flex; gap: 22px; flex-wrap: wrap;
+    margin-top: 26px;
+    font-size: 13px; color: var(--text-mute);
+    letter-spacing: 0.02em;
+  }
+  .hero-trust span { white-space: nowrap; }
+  html:not(.theme-night) .hero-trust { color: rgba(245,237,224,0.78); }
   .hero-scroll {
     position: absolute; bottom: 30px; left: 50%;
     transform: translateX(-50%); z-index: 3;
@@ -537,7 +545,61 @@
     line-height: 1.7;
   }
 
-  /* ===== TESTIMONIALS — marquee flottant ===== */
+  /* ===== ENGAGEMENTS — grid 4 cards, design simple et impactant ===== */
+  .commit-section {
+    padding: 100px 0;
+    background: var(--ink-soft);
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+  }
+  .commit-grid {
+    display: grid; grid-template-columns: repeat(4, 1fr);
+    gap: 22px; margin-top: 54px;
+  }
+  .commit-card {
+    background: var(--ink-card);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    padding: 32px 26px 28px;
+    transition: transform .3s var(--ease), border-color .3s, box-shadow .3s;
+    position: relative; overflow: hidden;
+  }
+  .commit-card::before {
+    content: ""; position: absolute; top: 0; left: 0;
+    width: 100%; height: 3px;
+    background: var(--gold);
+    transform: scaleX(0); transform-origin: left;
+    transition: transform .35s var(--ease);
+  }
+  .commit-card:hover {
+    transform: translateY(-5px);
+    border-color: rgba(201,151,31,0.35);
+    box-shadow: 0 18px 38px rgba(28,22,18,0.10);
+  }
+  .commit-card:hover::before { transform: scaleX(1); }
+  .commit-num {
+    font-family: var(--display); font-size: 28px;
+    color: var(--gold); letter-spacing: 0.04em;
+    margin-bottom: 16px; line-height: 1;
+  }
+  .commit-card h3 {
+    font-family: var(--display); font-size: 22px;
+    text-transform: uppercase; letter-spacing: 0.02em;
+    margin-bottom: 12px;
+  }
+  .commit-card p {
+    font-size: 13.5px; color: var(--text-mute);
+    line-height: 1.6;
+  }
+  @media (max-width: 980px) {
+    .commit-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 560px) {
+    .commit-grid { grid-template-columns: 1fr; }
+    .commit-section { padding: 76px 0; }
+  }
+
+  /* ===== TESTIMONIALS — marquee flottant (gardé au cas où) ===== */
   .testi-section {
     padding: 104px 0 110px;
     overflow: hidden;
@@ -728,7 +790,6 @@
     <li><a href="index.html" class="active">Accueil</a></li>
     <li><a href="services.html">Services</a></li>
     <li><a href="realisations.html">Réalisations</a></li>
-    <li><a href="defis.html">Défis</a></li>
     <li><a href="equipe.html">Équipe</a></li>
     <li><a href="faq.html">FAQ</a></li>
     <li><a href="#contact" class="nav-cta">Demander un devis</a></li>
@@ -760,21 +821,26 @@
          disableremoteplayback></video>
   <div class="hero-veil"></div>
   <div class="hero-inner wrap">
-    <div class="hero-eyebrow eyebrow">Studio de commerce digital · Nîmes</div>
+    <div class="hero-eyebrow eyebrow">Studio web &amp; vidéo · Nîmes</div>
     <h1 class="h-display">
-      <span class="ln">Des portes</span>
-      <span class="ln serif-accent">qui s'ouvrent.</span>
+      <span class="ln">Votre site web</span>
+      <span class="ln serif-accent">livré en 3 semaines.</span>
     </h1>
     <p class="hero-sub">
-      Sites web, vidéos publicitaires et devis interactifs. On structure
-      votre présence en ligne — et on la rend rentable.
+      Sites vitrine, e-commerce et vidéos pub. Devis clair en 24 h,
+      à partir de <strong style="color:var(--gold);">1 900 € HT</strong> — sans engagement.
     </p>
     <div class="hero-actions">
       <a href="#contact" class="btn btn-primary">
-        Demander un devis
+        Recevoir mon devis gratuit
         <svg viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
       </a>
-      <a href="realisations.html" class="btn btn-ghost">Voir nos réalisations</a>
+      <a href="https://devis-client.vercel.app" target="_blank" rel="noopener" class="btn btn-ghost">Voir un devis vivant (30 s)</a>
+    </div>
+    <div class="hero-trust">
+      <span>✓ Sans engagement</span>
+      <span>✓ Réponse sous 24 h</span>
+      <span>✓ Délais contractuels</span>
     </div>
   </div>
   <div class="hero-scroll">
@@ -786,10 +852,10 @@
 <!-- ============ STRIP ATOUTS ============ -->
 <section class="strip">
   <div class="strip-grid">
-    <div class="strip-item"><div class="k">3-en-1</div><div class="v">Web, vidéo &amp; outils</div></div>
-    <div class="strip-item"><div class="k">24h</div><div class="v">Délai de réponse</div></div>
-    <div class="strip-item"><div class="k">100%</div><div class="v">Devis clair &amp; sans engagement</div></div>
-    <div class="strip-item"><div class="k">7j/7</div><div class="v">Disponibilité</div></div>
+    <div class="strip-item"><div class="k">3 sem.</div><div class="v">Délai moyen de livraison</div></div>
+    <div class="strip-item"><div class="k">1 900 €</div><div class="v">À partir de — site vitrine HT</div></div>
+    <div class="strip-item"><div class="k">24 h</div><div class="v">Réponse à votre demande</div></div>
+    <div class="strip-item"><div class="k">Nîmes</div><div class="v">Studio local · échanges directs</div></div>
   </div>
 </section>
 
@@ -950,154 +1016,36 @@
   </div>
 </section>
 
-<!-- ============ ENGAGEMENTS — marquee flottant (anciennement avis) ============ -->
-<!-- NB : converti d'avis fictifs en engagements vérifiables (légalement safe).
-     Quand vous aurez de vrais avis clients, remplacer le contenu des cards. -->
-<section class="testi-section">
+<!-- ============ ENGAGEMENTS — grid statique 4 cards, plus pro/efficient ============ -->
+<section class="commit-section">
   <div class="wrap">
     <div class="sec-head center reveal">
       <span class="eyebrow">Nos engagements</span>
-      <h2 class="h-display">Ce qu'on garantit <span class="serif-accent">avant même de signer.</span></h2>
-      <p>Pas de promesse marketing : des règles concrètes qu'on s'impose sur chaque projet.</p>
+      <h2 class="h-display">Ce qui change tout, <span class="serif-accent">pour vous.</span></h2>
+      <p>Quatre garanties concrètes, écrites noir sur blanc dès le devis.</p>
     </div>
-  </div>
-
-  <div class="testi-rows">
-
-    <!-- Rangée 1 — défile vers la gauche -->
-    <div class="testi-row">
-      <div class="testi-track">
-
-        <article class="testi-card">
-          <div class="testi-stars" aria-label="Engagement clé">
-            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 7h7l-5.5 4.5 2 7.5L12 17l-6.5 4 2-7.5L2 9h7z"/></svg>
-            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 7h7l-5.5 4.5 2 7.5L12 17l-6.5 4 2-7.5L2 9h7z"/></svg>
-            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 7h7l-5.5 4.5 2 7.5L12 17l-6.5 4 2-7.5L2 9h7z"/></svg>
-            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 7h7l-5.5 4.5 2 7.5L12 17l-6.5 4 2-7.5L2 9h7z"/></svg>
-            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 7h7l-5.5 4.5 2 7.5L12 17l-6.5 4 2-7.5L2 9h7z"/></svg>
-          </div>
-          <p class="testi-quote">Le devis vivant est <strong>gratuit</strong>. Vous le recevez, vous le partagez, vous ne payez que si vous signez. Aucune carte demandée à l'avance.</p>
-          <div class="testi-author">
-            <div class="testi-avatar">01</div>
-            <div class="who"><strong>Zéro engagement</strong><span>Devis sans inscription</span></div>
-          </div>
-        </article>
-
-        <article class="testi-card">
-          <div class="testi-stars" aria-label="Engagement clé">
-            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 7h7l-5.5 4.5 2 7.5L12 17l-6.5 4 2-7.5L2 9h7z"/></svg>
-            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 7h7l-5.5 4.5 2 7.5L12 17l-6.5 4 2-7.5L2 9h7z"/></svg>
-            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 7h7l-5.5 4.5 2 7.5L12 17l-6.5 4 2-7.5L2 9h7z"/></svg>
-            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 7h7l-5.5 4.5 2 7.5L12 17l-6.5 4 2-7.5L2 9h7z"/></svg>
-            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 7h7l-5.5 4.5 2 7.5L12 17l-6.5 4 2-7.5L2 9h7z"/></svg>
-          </div>
-          <p class="testi-quote">Date de livraison <strong>contractuelle</strong>, écrite noir sur blanc dès le devis. On dépasse ? Une remise s'applique automatiquement.</p>
-          <div class="testi-author">
-            <div class="testi-avatar">02</div>
-            <div class="who"><strong>Délais garantis</strong><span>Ou remise auto</span></div>
-          </div>
-        </article>
-
-        <article class="testi-card">
-          <div class="testi-stars" aria-label="Engagement clé">
-            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 7h7l-5.5 4.5 2 7.5L12 17l-6.5 4 2-7.5L2 9h7z"/></svg>
-            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 7h7l-5.5 4.5 2 7.5L12 17l-6.5 4 2-7.5L2 9h7z"/></svg>
-            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 7h7l-5.5 4.5 2 7.5L12 17l-6.5 4 2-7.5L2 9h7z"/></svg>
-            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 7h7l-5.5 4.5 2 7.5L12 17l-6.5 4 2-7.5L2 9h7z"/></svg>
-            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 7h7l-5.5 4.5 2 7.5L12 17l-6.5 4 2-7.5L2 9h7z"/></svg>
-          </div>
-          <p class="testi-quote">Vous voyez le projet avancer <strong>chaque semaine</strong>. Pas de boîte noire pendant 2 mois — un point régulier, un lien de prévisualisation, et c'est tout.</p>
-          <div class="testi-author">
-            <div class="testi-avatar">03</div>
-            <div class="who"><strong>Transparence totale</strong><span>Point hebdo + accès live</span></div>
-          </div>
-        </article>
-
-        <article class="testi-card">
-          <div class="testi-stars" aria-label="Engagement clé">
-            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 7h7l-5.5 4.5 2 7.5L12 17l-6.5 4 2-7.5L2 9h7z"/></svg>
-            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 7h7l-5.5 4.5 2 7.5L12 17l-6.5 4 2-7.5L2 9h7z"/></svg>
-            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 7h7l-5.5 4.5 2 7.5L12 17l-6.5 4 2-7.5L2 9h7z"/></svg>
-            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 7h7l-5.5 4.5 2 7.5L12 17l-6.5 4 2-7.5L2 9h7z"/></svg>
-            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 7h7l-5.5 4.5 2 7.5L12 17l-6.5 4 2-7.5L2 9h7z"/></svg>
-          </div>
-          <p class="testi-quote">Vous récupérez les <strong>fichiers sources</strong> à la livraison : design, code, montages, projets vidéo. Aucun lock-in, jamais.</p>
-          <div class="testi-author">
-            <div class="testi-avatar">04</div>
-            <div class="who"><strong>Vos fichiers, à vous</strong><span>Sources livrées à 100%</span></div>
-          </div>
-        </article>
-
-      </div>
+    <div class="commit-grid">
+      <article class="commit-card reveal" data-d="1">
+        <div class="commit-num">01</div>
+        <h3>Devis gratuit en 24 h</h3>
+        <p>Réponse personnalisée sous 24 h ouvrées, pas un mail générique. Devis interactif sans inscription, sans carte demandée.</p>
+      </article>
+      <article class="commit-card reveal" data-d="2">
+        <div class="commit-num">02</div>
+        <h3>Délai contractuel</h3>
+        <p>Date de livraison écrite dans le devis. Si on dépasse, une remise s'applique automatiquement — c'est notre problème, pas le vôtre.</p>
+      </article>
+      <article class="commit-card reveal" data-d="3">
+        <div class="commit-num">03</div>
+        <h3>Sources livrées, lock-in zéro</h3>
+        <p>Vous récupérez code, design et fichiers vidéo à la livraison. Si demain vous changez de prestataire, tout vous appartient.</p>
+      </article>
+      <article class="commit-card reveal" data-d="4">
+        <div class="commit-num">04</div>
+        <h3>Suivi 30 j inclus</h3>
+        <p>Aymen ou Théo en direct, par mail ou WhatsApp, pendant 30 jours après livraison. Bug, retouche, question hébergement — on reste là.</p>
+      </article>
     </div>
-
-    <!-- Rangée 2 — défile vers la droite (sens inverse) -->
-    <div class="testi-row reverse">
-      <div class="testi-track">
-
-        <article class="testi-card">
-          <div class="testi-stars" aria-label="Engagement clé">
-            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 7h7l-5.5 4.5 2 7.5L12 17l-6.5 4 2-7.5L2 9h7z"/></svg>
-            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 7h7l-5.5 4.5 2 7.5L12 17l-6.5 4 2-7.5L2 9h7z"/></svg>
-            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 7h7l-5.5 4.5 2 7.5L12 17l-6.5 4 2-7.5L2 9h7z"/></svg>
-            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 7h7l-5.5 4.5 2 7.5L12 17l-6.5 4 2-7.5L2 9h7z"/></svg>
-            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 7h7l-5.5 4.5 2 7.5L12 17l-6.5 4 2-7.5L2 9h7z"/></svg>
-          </div>
-          <p class="testi-quote">Réponse à votre demande de devis sous <strong>24 h ouvrées</strong>. Pas un mail générique : un brief lu, des questions précises.</p>
-          <div class="testi-author">
-            <div class="testi-avatar">05</div>
-            <div class="who"><strong>Réactivité</strong><span>Réponse en moins de 24 h</span></div>
-          </div>
-        </article>
-
-        <article class="testi-card">
-          <div class="testi-stars" aria-label="Engagement clé">
-            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 7h7l-5.5 4.5 2 7.5L12 17l-6.5 4 2-7.5L2 9h7z"/></svg>
-            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 7h7l-5.5 4.5 2 7.5L12 17l-6.5 4 2-7.5L2 9h7z"/></svg>
-            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 7h7l-5.5 4.5 2 7.5L12 17l-6.5 4 2-7.5L2 9h7z"/></svg>
-            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 7h7l-5.5 4.5 2 7.5L12 17l-6.5 4 2-7.5L2 9h7z"/></svg>
-            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 7h7l-5.5 4.5 2 7.5L12 17l-6.5 4 2-7.5L2 9h7z"/></svg>
-          </div>
-          <p class="testi-quote">Pas satisfait de la première maquette ? On retravaille <strong>sans surfacturer</strong>. Un projet livré = un projet validé par vous.</p>
-          <div class="testi-author">
-            <div class="testi-avatar">06</div>
-            <div class="who"><strong>Itérations incluses</strong><span>Jusqu'à validation</span></div>
-          </div>
-        </article>
-
-        <article class="testi-card">
-          <div class="testi-stars" aria-label="Engagement clé">
-            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 7h7l-5.5 4.5 2 7.5L12 17l-6.5 4 2-7.5L2 9h7z"/></svg>
-            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 7h7l-5.5 4.5 2 7.5L12 17l-6.5 4 2-7.5L2 9h7z"/></svg>
-            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 7h7l-5.5 4.5 2 7.5L12 17l-6.5 4 2-7.5L2 9h7z"/></svg>
-            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 7h7l-5.5 4.5 2 7.5L12 17l-6.5 4 2-7.5L2 9h7z"/></svg>
-            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 7h7l-5.5 4.5 2 7.5L12 17l-6.5 4 2-7.5L2 9h7z"/></svg>
-          </div>
-          <p class="testi-quote">Un point d'entrée unique : <strong>Aymen ou Théo</strong> directement, jamais un compte de support anonyme. WhatsApp, mail, ou téléphone.</p>
-          <div class="testi-author">
-            <div class="testi-avatar">07</div>
-            <div class="who"><strong>Contact direct</strong><span>Pas d'intermédiaire</span></div>
-          </div>
-        </article>
-
-        <article class="testi-card">
-          <div class="testi-stars" aria-label="Engagement clé">
-            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 7h7l-5.5 4.5 2 7.5L12 17l-6.5 4 2-7.5L2 9h7z"/></svg>
-            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 7h7l-5.5 4.5 2 7.5L12 17l-6.5 4 2-7.5L2 9h7z"/></svg>
-            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 7h7l-5.5 4.5 2 7.5L12 17l-6.5 4 2-7.5L2 9h7z"/></svg>
-            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 7h7l-5.5 4.5 2 7.5L12 17l-6.5 4 2-7.5L2 9h7z"/></svg>
-            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 7h7l-5.5 4.5 2 7.5L12 17l-6.5 4 2-7.5L2 9h7z"/></svg>
-          </div>
-          <p class="testi-quote">Site livré = <strong>30 jours de suivi inclus</strong>. Bug, ajustement, question hébergement, on reste là — pas de "vous êtes livré, débrouillez-vous".</p>
-          <div class="testi-author">
-            <div class="testi-avatar">08</div>
-            <div class="who"><strong>Suivi post-livraison</strong><span>30 jours inclus</span></div>
-          </div>
-        </article>
-
-      </div>
-    </div>
-
   </div>
 </section>
 
@@ -1181,20 +1129,28 @@
     </div>
     <div class="faq-mini reveal">
       <div class="faq-item">
-        <button class="faq-q">Combien coûte un site web ?<span class="pm"></span></button>
-        <div class="faq-a"><p>Le prix dépend du projet : une vitrine simple n'a pas le même budget qu'une plateforme avec réservation ou espace client. Plutôt qu'un tarif unique, on établit un devis clair et détaillé après un premier échange. Aucun engagement.</p></div>
+        <button class="faq-q">Combien ça coûte concrètement ?<span class="pm"></span></button>
+        <div class="faq-a"><p>Site vitrine : à partir de <strong>1 900 € HT</strong> · E-commerce ou plateforme : à partir de <strong>4 500 € HT</strong> · Vidéo pub : à partir de <strong>1 200 € HT</strong>. Le prix final dépend de la complexité — on le détaille ligne par ligne dans le devis. <a href="services.html#tarifs" style="color:var(--gold);">Voir les fourchettes →</a></p></div>
       </div>
       <div class="faq-item">
-        <button class="faq-q">Le devis est-il payant ou engageant ?<span class="pm"></span></button>
-        <div class="faq-a"><p>Non. Le devis est gratuit et sans engagement. On chiffre clairement, on présente le projet — et si le feeling n'y est pas, vous n'êtes obligé à rien.</p></div>
+        <button class="faq-q">Et si je veux modifier mon site après livraison ?<span class="pm"></span></button>
+        <div class="faq-a"><p>Vous avez 30 jours de suivi inclus pour ajuster, corriger, ajouter du contenu. Au-delà, on facture à la prestation ou en forfait mensuel selon vos besoins. Vous n'êtes <strong>jamais bloqué</strong> : on vous livre les sources, vous pouvez aussi confier l'évolution à quelqu'un d'autre.</p></div>
       </div>
       <div class="faq-item">
-        <button class="faq-q">Quels sont les délais ?<span class="pm"></span></button>
-        <div class="faq-a"><p>Tout dépend de l'ampleur du projet, mais on travaille vite et par étapes. Un support visuel se livre en quelques jours ; un site web complet demande davantage de temps. Le planning est annoncé dès le devis.</p></div>
+        <button class="faq-q">Vous gérez l'hébergement et le nom de domaine ?<span class="pm"></span></button>
+        <div class="faq-a"><p>Oui. Hébergement et nom de domaine 1 an inclus dans le pack vitrine. Ensuite ~80 €/an si vous restez avec nous, ou on transfère chez l'hébergeur de votre choix sans frais. Hébergement <strong>français</strong>, conforme RGPD.</p></div>
       </div>
       <div class="faq-item">
-        <button class="faq-q">Travaillez-vous uniquement à Nîmes ?<span class="pm"></span></button>
-        <div class="faq-a"><p>La Clé est basée à Nîmes, mais une grande partie du travail se fait à distance. On accompagne des projets partout en France. Pour les tournages vidéo, on en discute selon le lieu.</p></div>
+        <button class="faq-q">Vous faites aussi le référencement Google (SEO) ?<span class="pm"></span></button>
+        <div class="faq-a"><p>Oui — SEO de base inclus dans chaque site (balises, structure, sitemap, vitesse). Pour aller plus loin (mots-clés, contenu, backlinks), on propose un accompagnement mensuel à partir de <strong>290 €/mois</strong>. Pas de promesse en l'air : on annonce ce qui est réaliste pour votre secteur.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Et si on n'aime pas le résultat ?<span class="pm"></span></button>
+        <div class="faq-a"><p>On retravaille jusqu'à validation, sans surfacturer (on cale 2 rounds d'itérations sur chaque maquette). Si vraiment ça ne colle pas après la première maquette, vous ne payez <strong>que l'acompte initial</strong> (30%) — on s'arrête là, sans rancune.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Pourquoi vous plutôt qu'une grosse agence ?<span class="pm"></span></button>
+        <div class="faq-a"><p>Parce que vous parlez à <strong>Aymen ou Théo en direct</strong>, jamais à un commercial puis un chef de projet puis un dev. Décision en 24 h, pas en 2 semaines. Et les prix sont 30-50% moins chers qu'une agence parisienne pour la même qualité de livrable.</p></div>
       </div>
     </div>
     <div style="text-align:center;margin-top:38px;" class="reveal">
@@ -1206,25 +1162,25 @@
 <!-- ============ CTA CONTACT ============ -->
 <section class="cta-banner" id="contact">
   <div class="inner wrap">
-    <span class="eyebrow reveal" style="margin-bottom:18px;">Prêt à démarrer</span>
-    <h2 class="h-display reveal" data-d="1">Ouvrons la porte <span class="serif-accent">ensemble.</span></h2>
+    <span class="eyebrow reveal" style="margin-bottom:18px;">Premier pas — gratuit, sans engagement</span>
+    <h2 class="h-display reveal" data-d="1">Recevez votre <span class="serif-accent">devis en 24 h.</span></h2>
     <p class="reveal" data-d="2">
-      Un projet, une idée, un brief même flou. Réservez un appel —
-      on chiffre clair, sans engagement.
+      Décrivez votre projet en 2 minutes ci-dessous. On revient vers vous
+      sous 24 heures ouvrées avec un devis interactif clair, chiffré, sans surprise.
     </p>
-    <div class="reveal" data-d="3" style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap;">
-      <a href="https://calendly.com/" target="_blank" rel="noopener" class="btn btn-primary" id="rdvBtn">
-        Réserver un appel gratuit
+    <div class="reveal" data-d="3" style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap;margin-bottom:18px;">
+      <a href="#contact-form" class="btn btn-primary" id="rdvBtn">
+        Remplir le brief (2 min)
         <svg viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
       </a>
       <a href="mailto:contact@lacle.fr" class="btn btn-ghost">contact@lacle.fr</a>
     </div>
-    <p class="reveal" data-d="4" style="font-size:13px;color:var(--text-mute);margin-top:26px;font-family:var(--sans);">
-      Réponse sous 24h ouvrées · Basé à Nîmes, partout en France
+    <p class="reveal" data-d="4" style="font-size:13px;color:var(--text-mute);font-family:var(--sans);">
+      ✓ Réponse sous 24 h ouvrées &nbsp;·&nbsp; ✓ Devis gratuit, sans engagement &nbsp;·&nbsp; ✓ Studio à Nîmes
     </p>
 
-    <div class="contact-form-card reveal" data-d="4">
-      <p class="cfc-or">— ou laissez-nous un message —</p>
+    <div class="contact-form-card reveal" data-d="4" id="contact-form">
+      <p class="cfc-or">Décrivez votre projet</p>
       <form name="devis" method="POST" data-netlify="true" netlify-honeypot="bot-field" action="/merci.html">
         <input type="hidden" name="form-name" value="devis" />
         <p class="hp"><label>Ne pas remplir : <input name="bot-field" /></label></p>
