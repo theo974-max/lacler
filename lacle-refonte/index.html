@@ -55,30 +55,19 @@
   html.intro-done, html.intro-done body { overflow: visible; }
   html.intro-skip #intro { display: none; }
 
+  /* Splash screen : fond blanc plein écran + logo centré, fade-out global propre */
   #intro {
     position: fixed; inset: 0; z-index: 10000;
-    /* PAS de background — la vague SVG fournit le blanc et se déforme en montant */
+    background: #ffffff;
     display: flex; align-items: center; justify-content: center;
-    overflow: hidden;
     pointer-events: auto;
-  }
-  /* la vague SVG occupe tout l'écran et s'anime via SMIL (attribut d) */
-  .intro-wave {
-    position: absolute; inset: 0;
-    width: 100%; height: 100%;
-    z-index: 0;
-    filter: drop-shadow(0 -2px 0 rgba(28,22,18,0.04));
-  }
-  /* fade-out du conteneur en toute fin pour que rien ne reste */
-  #intro {
-    animation: intro-fadeout 0.2s ease 2.45s forwards;
+    animation: intro-fadeout 0.55s cubic-bezier(.4,0,.2,1) 1.85s forwards;
   }
   @keyframes intro-fadeout {
     to { opacity: 0; visibility: hidden; }
   }
 
   .intro-logo {
-    position: relative; z-index: 1;
     display: flex; align-items: center;
     gap: 0.06em;
     font-family: 'Instrument Serif', Georgia, serif;
@@ -89,11 +78,11 @@
     letter-spacing: -0.015em;
     line-height: 1.25;       /* espace pour l'accent de "é" en italique */
     padding: 0.15em 0;        /* marge interne pour ne rien clipper */
-    /* fade-out logo synchronisé avec le départ de la vague liquide */
-    animation: intro-logo-out 0.35s cubic-bezier(.55,0,.45,1) 1.5s forwards;
+    /* léger zoom-in pendant le fade pour effet "départ" satisfaisant */
+    animation: intro-logo-zoom 0.55s cubic-bezier(.4,0,.2,1) 1.85s forwards;
   }
-  @keyframes intro-logo-out {
-    to { opacity: 0; transform: translateY(-22px); }
+  @keyframes intro-logo-zoom {
+    to { transform: scale(1.06); opacity: 0; }
   }
   /* "La" et "Clé" apparaissent EN PREMIER, en fade rapide */
   .il-text {
@@ -691,31 +680,8 @@
 </head>
 <body>
 
-<!-- ============ INTRO — clé qui tombe + vague liquide ============ -->
+<!-- ============ INTRO — splash screen simple ============ -->
 <div id="intro" aria-hidden="true">
-  <!-- Vague liquide : filtre gooey léger pour bords organiques + courbes
-       de plus en plus prononcées (stretch liquide) + easing snappy -->
-  <svg class="intro-wave" preserveAspectRatio="none" viewBox="0 0 100 100" aria-hidden="true">
-    <!-- Pas de filtre : path morphing pur, beaucoup plus fluide (60 fps).
-         Courbes prononcées qui s'intensifient en montant → effet liquide naturel. -->
-    <path fill="#ffffff" d="M0,0 H100 V100 H0 Z">
-      <animate
-        attributeName="d"
-        dur="1s"
-        begin="1.5s"
-        fill="freeze"
-        calcMode="spline"
-        keyTimes="0; 0.18; 0.5; 0.82; 1"
-        keySplines="0.5 0 0.3 1; 0.55 0 0.3 1; 0.5 0 0.3 1; 0.4 0 0.7 1"
-        values="
-          M0,0 H100 V100 H0 Z;
-          M0,0 H100 V92 Q50,118 0,92 Z;
-          M0,0 H100 V52 Q50,16 0,52 Z;
-          M0,0 H100 V8 Q50,-30 0,8 Z;
-          M0,0 H100 V-30 Q50,-62 0,-30 Z"
-      />
-    </path>
-  </svg>
   <div class="intro-logo">
     <span class="il-text il-la">La</span>
     <svg class="il-key" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
