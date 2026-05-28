@@ -74,10 +74,11 @@
     font-style: italic;
     font-weight: 400;
     color: #1c1612;
-    font-size: clamp(72px, 13vw, 168px);
+    font-size: clamp(64px, 11vw, 140px);  /* un poil réduit pour la respiration */
     letter-spacing: -0.015em;
-    line-height: 1.25;       /* espace pour l'accent de "é" en italique */
-    padding: 0.15em 0;        /* marge interne pour ne rien clipper */
+    line-height: 1.6;          /* espace large pour l'accent italique de "é" */
+    padding: 0.45em 0;          /* marge interne généreuse au-dessus + en-dessous */
+    overflow: visible;          /* explicite : rien ne clip */
     /* léger zoom-in pendant le fade pour effet "départ" satisfaisant */
     animation: intro-logo-zoom 0.55s cubic-bezier(.4,0,.2,1) 1.85s forwards;
   }
@@ -86,9 +87,14 @@
   }
   /* "La" et "Clé" apparaissent EN PREMIER, en fade rapide */
   .il-text {
+    display: inline-block;
+    overflow: visible;
     opacity: 0;
     transform: translateY(10px);
     animation: il-text-in 0.45s cubic-bezier(.2,.9,.3,1) forwards;
+    /* on s'assure que les accents/diacritiques ne sont pas tronqués */
+    line-height: 1.2;
+    padding: 0.1em 0;
   }
   .il-la  { animation-delay: 0.05s; }
   .il-cle { animation-delay: 0.18s; }
