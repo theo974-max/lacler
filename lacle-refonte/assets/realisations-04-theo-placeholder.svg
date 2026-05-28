@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" preserveAspectRatio="xMidYMid slice">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#1c1612"/>
+      <stop offset="60%" stop-color="#2a1f15"/>
+      <stop offset="100%" stop-color="#1c1612"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="50%" cy="40%" r="55%">
+      <stop offset="0%" stop-color="#c9971f" stop-opacity="0.42"/>
+      <stop offset="60%" stop-color="#c9971f" stop-opacity="0.10"/>
+      <stop offset="100%" stop-color="#c9971f" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="800" height="500" fill="url(#bg)"/>
+  <rect width="800" height="500" fill="url(#glow)"/>
+  <!-- engrenage stylisé : génie mécanique -->
+  <g transform="translate(400 220)" fill="none" stroke="#c9971f" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round">
+    <circle r="70" stroke-opacity="0.95"/>
+    <circle r="28" stroke-opacity="0.95"/>
+    <!-- dents -->
+    <g stroke-opacity="0.95">
+      <path d="M0,-78 V-92"/>
+      <path d="M0,78 V92"/>
+      <path d="M-78,0 H-92"/>
+      <path d="M78,0 H92"/>
+      <path d="M55,-55 L65,-65"/>
+      <path d="M55,55 L65,65"/>
+      <path d="M-55,55 L-65,65"/>
+      <path d="M-55,-55 L-65,-65"/>
+    </g>
+  </g>
+  <text x="400" y="365" text-anchor="middle"
+        font-family="Anton, Impact, sans-serif" font-size="32" fill="#f5ede0"
+        letter-spacing="3">PORTFOLIO THÉO</text>
+  <text x="400" y="402" text-anchor="middle"
+        font-family="Inter, sans-serif" font-size="13" fill="#c9971f"
+        letter-spacing="3" font-weight="700">GÉNIE MÉCANIQUE &amp; PRODUCTIQUE</text>
+</svg>

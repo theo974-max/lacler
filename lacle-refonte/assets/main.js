@@ -113,6 +113,7 @@
     { title: 'Plateforme automobile',tag: 'Projet',   desc: 'Site complet pour un garage',                   url: 'realisations.html' },
     { title: 'MEDKEY',               tag: 'Projet',   desc: 'Portfolio Aymen Cherfi',                        url: 'realisations.html' },
     { title: 'The K',                tag: 'Projet',   desc: 'Chaîne YouTube de défis',                       url: 'realisations.html' },
+    { title: 'Portfolio Théo Clapet',tag: 'Projet',   desc: 'e-Portfolio génie mécanique & productique',     url: 'realisations.html' },
     { title: 'Défis sport',          tag: 'Page',     desc: 'Du vélo Nîmes-Marseille au saut en parachute',  url: 'defis.html' },
     { title: 'L’équipe',        tag: 'Page',     desc: 'Aymen Cherfi & Théo Clapet',                    url: 'equipe.html' },
     { title: 'Aymen Cherfi',         tag: 'Équipe',   desc: 'Co-fondateur',                                  url: 'equipe.html' },
@@ -283,26 +284,52 @@
   // Synchronisé avec le CSS : 2.4s delay + 1.2s rise = 3.6s
   // ============================================================
   var docEl = document.documentElement;
-  // helper : force le démarrage de la vidéo hero (au cas où autoplay aurait été bloqué)
+
+  // ============================================================
+  // VIDÉO HERO — démarrage immédiat (multi-tentatives au cas où autoplay bloqué)
+  // ============================================================
+  var heroVid = document.querySelector('.hero-video');
   function kickHeroVideo () {
-    var v = document.querySelector('.hero-video');
-    if (!v) return;
-    // sur certains navigateurs, .play() retourne une Promise qui rejette si bloqué
-    var p = v.play();
+    if (!heroVid) return;
+    // s'assure que les attributs sont bien là (Safari est tatillon)
+    heroVid.muted = true;
+    heroVid.playsInline = true;
+    heroVid.setAttribute('playsinline', '');
+    var p = heroVid.play();
     if (p && typeof p.catch === 'function') {
-      p.catch(function () {
-        // si vraiment bloqué : on garde le poster, c'est ok
-      });
+      p.catch(function () {/* poster reste si bloqué */});
     }
   }
+  // Tentative 1 : tout de suite (la vidéo joue DERRIÈRE l'intro, prête au reveal)
+  kickHeroVideo();
+  // Tentative 2 : dès que les premières données sont chargées
+  if (heroVid) {
+    heroVid.addEventListener('loadeddata', kickHeroVideo);
+    heroVid.addEventListener('canplay', kickHeroVideo);
+  }
+  // Tentative 3 : dès qu'on retrouve le focus de la page (onglet réactivé)
+  document.addEventListener('visibilitychange', function () {
+    if (document.visibilityState === 'visible') kickHeroVideo();
+  });
+  // Tentative 4 : à la première interaction utilisateur (débloque autoplay sur Safari strict)
+  var unlockOnce = function () {
+    kickHeroVideo();
+    document.removeEventListener('click', unlockOnce, true);
+    document.removeEventListener('touchstart', unlockOnce, true);
+  };
+  document.addEventListener('click', unlockOnce, true);
+  document.addEventListener('touchstart', unlockOnce, true);
 
+  // ============================================================
+  // INTRO — nettoyage après le splash
+  // ============================================================
   if (docEl.classList.contains('intro-playing')) {
     var intro = document.getElementById('intro');
     var killIntro = function () {
       docEl.classList.remove('intro-playing');
       docEl.classList.add('intro-done');
       if (intro && intro.parentNode) intro.remove();
-      // dès que le site est révélé, on relance la vidéo hero
+      // ceinture + bretelles : on relance la vidéo au reveal
       kickHeroVideo();
     };
     // fin auto (splash : key+text done ~1.3s + hold 0.55s + fade 0.55s = 2.4s)
@@ -315,8 +342,5 @@
         document.removeEventListener('keydown', onKey);
       }
     });
-  } else {
-    // pas d'intro (sessionStorage flag déjà set) → on lance la vidéo dès maintenant
-    kickHeroVideo();
   }
 })();
