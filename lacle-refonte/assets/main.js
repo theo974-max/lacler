@@ -283,12 +283,27 @@
   // Synchronisé avec le CSS : 2.4s delay + 1.2s rise = 3.6s
   // ============================================================
   var docEl = document.documentElement;
+  // helper : force le démarrage de la vidéo hero (au cas où autoplay aurait été bloqué)
+  function kickHeroVideo () {
+    var v = document.querySelector('.hero-video');
+    if (!v) return;
+    // sur certains navigateurs, .play() retourne une Promise qui rejette si bloqué
+    var p = v.play();
+    if (p && typeof p.catch === 'function') {
+      p.catch(function () {
+        // si vraiment bloqué : on garde le poster, c'est ok
+      });
+    }
+  }
+
   if (docEl.classList.contains('intro-playing')) {
     var intro = document.getElementById('intro');
     var killIntro = function () {
       docEl.classList.remove('intro-playing');
       docEl.classList.add('intro-done');
       if (intro && intro.parentNode) intro.remove();
+      // dès que le site est révélé, on relance la vidéo hero
+      kickHeroVideo();
     };
     // fin auto (splash : key+text done ~1.3s + hold 0.55s + fade 0.55s = 2.4s)
     setTimeout(killIntro, 2500);
@@ -300,5 +315,8 @@
         document.removeEventListener('keydown', onKey);
       }
     });
+  } else {
+    // pas d'intro (sessionStorage flag déjà set) → on lance la vidéo dès maintenant
+    kickHeroVideo();
   }
 })();

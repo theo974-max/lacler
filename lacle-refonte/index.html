@@ -31,6 +31,8 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Anton&family=Caveat:wght@500;600;700&family=Inter:wght@300;400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet" />
 <link rel="stylesheet" href="assets/style.css" />
+<!-- Précharge agressive de la vidéo hero pour qu'elle soit prête dès la fin de l'intro -->
+<link rel="preload" as="video" href="assets/index-00-f9857dcdc0.mp4" type="video/mp4" />
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -74,11 +76,11 @@
     font-style: italic;
     font-weight: 400;
     color: #1c1612;
-    font-size: clamp(64px, 11vw, 140px);  /* un poil réduit pour la respiration */
+    font-size: clamp(56px, 10vw, 120px);    /* réduit pour respiration garantie */
     letter-spacing: -0.015em;
-    line-height: 1.6;          /* espace large pour l'accent italique de "é" */
-    padding: 0.45em 0;          /* marge interne généreuse au-dessus + en-dessous */
-    overflow: visible;          /* explicite : rien ne clip */
+    line-height: 2;             /* énorme : double font-size = accent jamais clippé */
+    padding: 0.8em 0;           /* marge interne très généreuse */
+    overflow: visible;
     /* léger zoom-in pendant le fade pour effet "départ" satisfaisant */
     animation: intro-logo-zoom 0.55s cubic-bezier(.4,0,.2,1) 1.85s forwards;
   }
@@ -92,9 +94,9 @@
     opacity: 0;
     transform: translateY(10px);
     animation: il-text-in 0.45s cubic-bezier(.2,.9,.3,1) forwards;
-    /* on s'assure que les accents/diacritiques ne sont pas tronqués */
-    line-height: 1.2;
-    padding: 0.1em 0;
+    line-height: 1.5;
+    padding-top: 0.3em;         /* explicitement de l'espace pour l'accent au-dessus */
+    padding-bottom: 0.1em;
   }
   .il-la  { animation-delay: 0.05s; }
   .il-cle { animation-delay: 0.18s; }
@@ -743,8 +745,10 @@
 <!-- ============ HERO ============ -->
 <header class="hero theme-dark">
   <video class="hero-video" autoplay loop muted playsinline
-         preload="metadata" poster="assets/hero-poster.jpg"
-         src="assets/index-00-f9857dcdc0.mp4"></video>
+         preload="auto" poster="assets/hero-poster.jpg"
+         src="assets/index-00-f9857dcdc0.mp4"
+         disablepictureinpicture
+         disableremoteplayback></video>
   <div class="hero-veil"></div>
   <div class="hero-inner wrap">
     <div class="hero-eyebrow eyebrow">Studio de commerce digital · Nîmes</div>
