@@ -76,27 +76,36 @@
     font-style: italic;
     font-weight: 400;
     color: #1c1612;
-    font-size: clamp(56px, 10vw, 120px);    /* réduit pour respiration garantie */
+    font-size: clamp(52px, 9.5vw, 116px);
     letter-spacing: -0.015em;
-    line-height: 2;             /* énorme : double font-size = accent jamais clippé */
-    padding: 0.8em 0;           /* marge interne très généreuse */
+    /* Pas de line-height ni padding forcés ici — on laisse les métriques natives
+       de la font gérer l'espace de l'accent. Le wrapper SVG ci-dessous garantit
+       qu'aucun parent ne clip. */
     overflow: visible;
-    /* léger zoom-in pendant le fade pour effet "départ" satisfaisant */
     animation: intro-logo-zoom 0.55s cubic-bezier(.4,0,.2,1) 1.85s forwards;
   }
   @keyframes intro-logo-zoom {
     to { transform: scale(1.06); opacity: 0; }
   }
-  /* "La" et "Clé" apparaissent EN PREMIER, en fade rapide */
+  /* Chaque mot dans un wrapper isolé avec largeur auto et hauteur naturelle */
   .il-text {
     display: inline-block;
     overflow: visible;
     opacity: 0;
     transform: translateY(10px);
     animation: il-text-in 0.45s cubic-bezier(.2,.9,.3,1) forwards;
-    line-height: 1.5;
-    padding-top: 0.3em;         /* explicitement de l'espace pour l'accent au-dessus */
-    padding-bottom: 0.1em;
+    /* Hauteur naturelle de la police, espace pour accent inclus */
+    line-height: 1.35;
+    /* On force le contenu à ne PAS être clippé par dessus */
+    padding: 0.18em 0.02em 0;
+  }
+  /* Version mobile : réduit encore + plus de marge */
+  @media (max-width: 600px) {
+    .intro-logo {
+      font-size: clamp(44px, 13vw, 80px);
+      gap: 0.04em;
+    }
+    .il-text { padding: 0.22em 0.02em 0.04em; }
   }
   .il-la  { animation-delay: 0.05s; }
   .il-cle { animation-delay: 0.18s; }
